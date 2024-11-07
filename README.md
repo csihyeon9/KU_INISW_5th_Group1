@@ -38,6 +38,9 @@ gnn-problem-recommender/
 ├── requirements.txt                       # 필요한 라이브러리 목록
 └── README.md                              # 프로젝트 설명 파일
 ```
+## 진행 환경
+>> Window 10 / Vscode
+
 
 ## 주요 파일 설명
 
