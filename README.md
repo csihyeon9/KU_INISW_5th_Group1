@@ -1,9 +1,7 @@
-아래는 GitHub 스타일에 맞춘 **`README.md`** 파일입니다. Markdown 형식을 이용하여 각 섹션을 깔끔하게 정리하였습니다.
-
-
 # GNN Problem Recommender
 
-**GNN Problem Recommender**는 Graph Neural Network (GNN)을 이용하여 사용자가 입력한 키워드와 관련된 문제를 추천하는 시스템입니다. 이 프로젝트는 PyTorch와 PyTorch Geometric을 기반으로 하고, 문제 데이터는 SQLite 데이터베이스로 관리됩니다.
+**GNN Problem Recommender**는 Graph Neural Network (GNN)을 이용하여 사용자가 입력한 키워드와 관련된 문제를 추천하는 시스템입니다.**
+**이 프로젝트는 PyTorch와 PyTorch Geometric을 기반으로 하고, 문제 데이터는 SQLite 데이터베이스로 관리됩니다.**
 
 ## 프로젝트 구조
 
@@ -110,7 +108,3 @@ python src/recommender.py "Finance"
 
 이 프로젝트는 MIT 라이선스를 따릅니다.
 ```
-
-### 저장 방법
-
-위 내용을 **`README.md`** 파일로 저장하여 프로젝트 루트 디렉토리에 추가하면 됩니다. 이제 GitHub에 업로드할 준비가 되었어요! 추가 질문이나 도움이 필요하시면 언제든지 말씀해 주세요. 😊
