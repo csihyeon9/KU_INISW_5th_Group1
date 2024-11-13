@@ -1,0 +1,7 @@
+https://github.com/hamjang/2023project
+
+news.json 기사는 기존 코드에서 metadata는 안바꾸고 paragraph 속 form만 최근 기사로 수정함! 
+
+기사 링크: https://n.news.naver.com/mnews/article/654/0000093123
+
+object과 relation을 보다 정확히 뽑을 필요가 있어 보인다...
