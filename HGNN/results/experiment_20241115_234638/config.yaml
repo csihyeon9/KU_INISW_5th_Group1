@@ -1,0 +1,12 @@
+batch_size: 32
+data_path: null
+device: null
+embedding_dim: 64
+epochs: 150
+experiment_name: null
+hidden_dim: 128
+lr: 0.0002
+num_layers: 3
+save_dir: results
+save_model: false
+weight_decay: 0.0001
