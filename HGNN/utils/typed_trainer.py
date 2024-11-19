@@ -1,3 +1,4 @@
+# typed_trainer.py
 import torch
 import torch.nn.functional as F
 from torch.optim import AdamW
@@ -10,7 +11,7 @@ class TypedHGNNTrainer:
     def __init__(
         self,
         model: torch.nn.Module,
-        learning_rate: float = 0.0002,
+        learning_rate: float = 0.0001,
         weight_decay: float = 1e-4,
         device: Optional[str] = None
     ):
@@ -29,8 +30,8 @@ class TypedHGNNTrainer:
         self.scheduler = ReduceLROnPlateau(
             self.optimizer,
             mode='min',
-            factor=0.5,
-            patience=5,
+            factor=0.7,
+            patience=10,
             verbose=False
         )
         
@@ -38,25 +39,23 @@ class TypedHGNNTrainer:
         self.best_model_state = None
         self.losses = {'total': [], 'reconstruction': [], 'relation': []}
         
-    def _compute_loss(
-        self,
-        output: Dict[str, torch.Tensor],
-        target: torch.Tensor,
-        relation_labels: Optional[torch.Tensor] = None
-    ) -> Dict[str, torch.Tensor]:
+    def _compute_loss(self, output: Dict[str, torch.Tensor], target: torch.Tensor, 
+                 relation_labels: Optional[torch.Tensor] = None) -> Dict[str, torch.Tensor]:
         """손실 함수 계산"""
         losses = {}
         
-        # 재구성 손실
+        # 1. 재구성 손실에 가중치 추가 (alpha = 1.0)
+        alpha = 2.0
         reconstruction_loss = F.mse_loss(output['embeddings'], target)
         l1_loss = F.l1_loss(output['embeddings'], target)
         cosine_loss = 1 - F.cosine_similarity(output['embeddings'], target).mean()
-        losses['reconstruction'] = reconstruction_loss + 0.1 * l1_loss + 0.1 * cosine_loss
+        losses['reconstruction'] = alpha * (reconstruction_loss + 0.05 * l1_loss + 0.05 * cosine_loss)
         
-        # 관계 예측 손실 (있는 경우)
+        # 2. 관계 예측 손실에 가중치 추가 (beta = 0.5)
         if 'relation_scores' in output and relation_labels is not None:
+            beta = 0.3
             relation_loss = F.cross_entropy(output['relation_scores'], relation_labels)
-            losses['relation'] = relation_loss
+            losses['relation'] = beta * relation_loss
         
         # 전체 손실
         total_loss = losses['reconstruction']
@@ -106,7 +105,7 @@ class TypedHGNNTrainer:
     def train(
         self,
         dataset,
-        num_epochs: int = 150,
+        num_epochs: int = 100,
         batch_size: int = 32,
         eval_every: int = 10,
         early_stopping_patience: int = 15
@@ -149,11 +148,11 @@ class TypedHGNNTrainer:
             else:
                 no_improvement += 1
             
-            # Early stopping
-            if no_improvement >= early_stopping_patience:
-                print(f"\nEarly stopping triggered after {epoch + 1} epochs")
-                print(f"Best loss achieved: {self.best_loss:.4f}")
-                break
+            # # Early stopping
+            # if no_improvement >= early_stopping_patience:
+            #     print(f"\nEarly stopping triggered after {epoch + 1} epochs")
+            #     print(f"Best loss achieved: {self.best_loss:.4f}")
+            #     break
         
         # 최고 성능 모델 복원
         self.model.load_state_dict(self.best_model_state)

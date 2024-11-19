@@ -1,0 +1,26 @@
+2024-11-17 06:26:01,249 [INFO] Loading data...
+2024-11-17 06:26:01,287 [INFO] Loaded 1459 keywords and 200 hyperedges
+2024-11-17 06:26:01,805 [INFO] Starting training...
+2024-11-17 06:26:01,841 [ERROR] An error occurred: a Tensor with 128 elements cannot be converted to Scalar
+Traceback (most recent call last):
+  File "main.py", line 144, in main
+    train_history = trainer.train(
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\trainer.py", line 173, in train
+    losses = self.train_epoch(
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\trainer.py", line 70, in train_epoch
+    losses = self._compute_losses(x, edge_index, pos_pairs, neg_pairs)
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\trainer.py", line 91, in _compute_losses
+    model_output = self.model(x, edge_index)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\model.py", line 192, in forward
+    layer_out, layer_attention = layer(h, edge_index)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\model.py", line 118, in forward
+    attention_weights[node_i, node_j] += attention[i].item()
+RuntimeError: a Tensor with 128 elements cannot be converted to Scalar

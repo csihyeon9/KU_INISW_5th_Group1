@@ -1,3 +1,5 @@
+# typed_relation.py
+import torch
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
 import numpy as np

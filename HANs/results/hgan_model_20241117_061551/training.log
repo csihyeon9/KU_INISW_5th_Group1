@@ -1,0 +1,24 @@
+2024-11-17 06:15:51,367 [INFO] Loading data...
+2024-11-17 06:15:51,406 [INFO] Loaded 1459 keywords and 200 hyperedges
+2024-11-17 06:15:51,962 [INFO] Starting training...
+2024-11-17 06:15:52,434 [ERROR] An error occurred: The size of tensor a (128) must match the size of tensor b (64) at non-singleton dimension 1
+Traceback (most recent call last):
+  File "main.py", line 144, in main
+    train_history = trainer.train(
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\trainer.py", line 173, in train
+    losses = self.train_epoch(
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\trainer.py", line 70, in train_epoch
+    losses = self._compute_losses(x, edge_index, pos_pairs, neg_pairs)
+  File "C:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\trainer.py", line 95, in _compute_losses
+    reconstruction_loss = self.reconstruction_criterion(embeddings, x)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\modules\loss.py", line 538, in forward
+    return F.mse_loss(input, target, reduction=self.reduction)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\nn\functional.py", line 3383, in mse_loss
+    expanded_input, expanded_target = torch.broadcast_tensors(input, target)
+  File "c:\Users\K\Desktop\KU_INISW_5th_Group1\HANs\.venv\lib\site-packages\torch\functional.py", line 77, in broadcast_tensors
+    return _VF.broadcast_tensors(tensors)  # type: ignore[attr-defined]
+RuntimeError: The size of tensor a (128) must match the size of tensor b (64) at non-singleton dimension 1

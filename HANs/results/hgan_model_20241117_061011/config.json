@@ -1,0 +1,23 @@
+{
+  "embedding_dim": 64,
+  "hidden_dim": 128,
+  "num_layers": 3,
+  "num_heads": 4,
+  "dropout": 0.1,
+  "batch_size": 32,
+  "num_epochs": 200,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "negative_ratio": 1.0,
+  "early_stopping_patience": 10,
+  "eval_every": 1,
+  "data_path": "data/processed/financial_data.json",
+  "device": null,
+  "seed": 42,
+  "save_dir": "results",
+  "model_name": "hgan_model",
+  "save_embeddings": true,
+  "keyword_file": "data/raw/data_only_keywords.json",
+  "generate_sample": false,
+  "num_relations": 200
+}
