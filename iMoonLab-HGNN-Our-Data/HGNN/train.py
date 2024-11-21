@@ -1,3 +1,4 @@
+# train.py
 import os
 import time
 import copy
@@ -8,32 +9,57 @@ import utils.hypergraph_utils as hgut
 from models import HGNN
 from config import get_config
 from datasets import load_feature_construct_H
+from json_preprocessing import preprocess_json_for_hgnn, construct_hypergraph_from_json, analyze_data_distribution
+import numpy as np
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 cfg = get_config('config/config.yaml')
 
 # initialize data
-data_dir = cfg['modelnet40_ft'] if cfg['on_dataset'] == 'ModelNet40' \
-    else cfg['ntu2012_ft']
-fts, lbls, idx_train, idx_test, H = \
-    load_feature_construct_H(data_dir,
-                             m_prob=cfg['m_prob'],
-                             K_neigs=cfg['K_neigs'],
-                             is_probH=cfg['is_probH'],
-                             use_mvcnn_feature=cfg['use_mvcnn_feature'],
-                             use_gvcnn_feature=cfg['use_gvcnn_feature'],
-                             use_mvcnn_feature_for_structure=cfg['use_mvcnn_feature_for_structure'],
-                             use_gvcnn_feature_for_structure=cfg['use_gvcnn_feature_for_structure'])
-G = hgut.generate_G_from_H(H)
-n_class = int(lbls.max()) + 1
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+# data_dir = cfg['modelnet40_ft'] if cfg['on_dataset'] == 'ModelNet40' \
+#     else cfg['ntu2012_ft']
+# fts, lbls, idx_train, idx_test, H = \
+#     load_feature_construct_H(data_dir,
+#                              m_prob=cfg['m_prob'],
+#                              K_neigs=cfg['K_neigs'],
+#                              is_probH=cfg['is_probH'],
+#                              use_mvcnn_feature=cfg['use_mvcnn_feature'],
+#                              use_gvcnn_feature=cfg['use_gvcnn_feature'],
+#                              use_mvcnn_feature_for_structure=cfg['use_mvcnn_feature_for_structure'],
+#                              use_gvcnn_feature_for_structure=cfg['use_gvcnn_feature_for_structure'])
+# G = hgut.generate_G_from_H(H)
+# n_class = int(lbls.max()) + 1
+# device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-# transform data to device
+# # transform data to device
+# fts = torch.Tensor(fts).to(device)
+# lbls = torch.Tensor(lbls).squeeze().long().to(device)
+# G = torch.Tensor(G).to(device)
+# idx_train = torch.Tensor(idx_train).long().to(device)
+# idx_test = torch.Tensor(idx_test).long().to(device)
+
+# data_dir = "data_h4.json"
+data_dir = "hyperedges_categorized.json"
+fts, lbls, idx_train, idx_test = preprocess_json_for_hgnn(data_dir)
+
+# Construct hypergraph
+H = construct_hypergraph_from_json(fts)
+G = hgut.generate_G_from_H(H)
+
+# Convert to PyTorch tensors
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 fts = torch.Tensor(fts).to(device)
 lbls = torch.Tensor(lbls).squeeze().long().to(device)
 G = torch.Tensor(G).to(device)
 idx_train = torch.Tensor(idx_train).long().to(device)
 idx_test = torch.Tensor(idx_test).long().to(device)
+
+# Initialize model
+n_class = int(lbls.max()) + 1
+model = HGNN(in_ch=fts.shape[1],
+             n_class=n_class,
+             n_hid=32,
+             dropout=0.5).to(device)
 
 
 def train_model(model, criterion, optimizer, scheduler, num_epochs=25, print_freq=500):
@@ -50,7 +76,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25, print_fre
         # Each epoch has a training and validation phase
         for phase in ['train', 'val']:
             if phase == 'train':
-                scheduler.step()
+                # scheduler.step()
                 model.train()  # Set model to training mode
             else:
                 model.eval()  # Set model to evaluate mode
@@ -71,6 +97,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25, print_fre
                 if phase == 'train':
                     loss.backward()
                     optimizer.step()
+                    scheduler.step()
 
             # statistics
             running_loss += loss.item() * fts.size(0)
@@ -110,22 +137,38 @@ def _main():
     pp.pprint(cfg)
     print('Configuration -> End')
 
+    labels_numpy = lbls.cpu().numpy() if torch.is_tensor(lbls) else lbls
+    weights = compute_class_weights(labels_numpy)
+
     model_ft = HGNN(in_ch=fts.shape[1],
                     n_class=n_class,
                     n_hid=cfg['n_hid'],
                     dropout=cfg['drop_out'])
     model_ft = model_ft.to(device)
 
-    optimizer = optim.Adam(model_ft.parameters(), lr=cfg['lr'],
-                           weight_decay=cfg['weight_decay'])
+    # optimizer = optim.Adam(model_ft.parameters(), lr=cfg['lr'],
+    #                        weight_decay=cfg['weight_decay'])
+    optimizer = optim.AdamW(model_ft.parameters(), lr=cfg['lr'],
+                      weight_decay=cfg['weight_decay'])
     # optimizer = optim.SGD(model_ft.parameters(), lr=0.01, weight_decay=cfg['weight_decay)
-    schedular = optim.lr_scheduler.MultiStepLR(optimizer,
-                                               milestones=cfg['milestones'],
-                                               gamma=cfg['gamma'])
-    criterion = torch.nn.CrossEntropyLoss()
+    # schedular = optim.lr_scheduler.MultiStepLR(optimizer,
+    #                                            milestones=cfg['milestones'],
+    #                                            gamma=cfg['gamma'])
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, 
+                                                T_max=cfg['max_epoch'],
+                                                eta_min=1e-6)
+    # criterion = torch.nn.CrossEntropyLoss()
+    criterion = torch.nn.CrossEntropyLoss(weight=weights)
 
-    model_ft = train_model(model_ft, criterion, optimizer, schedular, cfg['max_epoch'], print_freq=cfg['print_freq'])
+    model_ft = train_model(model_ft, criterion, optimizer, scheduler, cfg['max_epoch'], print_freq=cfg['print_freq'])
 
+def compute_class_weights(labels):
+    unique_labels = np.unique(labels)
+    class_counts = np.bincount(labels)
+    total_samples = len(labels)
+    weights = torch.FloatTensor([total_samples / (len(unique_labels) * count) for count in class_counts])
+    return weights.to(device)
 
 if __name__ == '__main__':
+    analyze_data_distribution("hyperedges_categorized.json")
     _main()

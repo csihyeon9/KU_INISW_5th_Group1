@@ -1,6 +1,6 @@
+# visual_data.py
 from datasets import load_ft
 from utils import hypergraph_utils as hgut
-
 
 def load_feature_construct_H(data_dir,
                              m_prob=1,

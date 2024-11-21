@@ -1,9 +1,9 @@
+# layers.py
 import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-
 
 class HGNN_conv(nn.Module):
     def __init__(self, in_ft, out_ft, bias=True):
@@ -29,19 +29,17 @@ class HGNN_conv(nn.Module):
         x = G.matmul(x)
         return x
 
-
 class HGNN_fc(nn.Module):
-    def __init__(self, in_ch, out_ch):
-        super(HGNN_fc, self).__init__()
+    def init(self, in_ch, out_ch):
+        super(HGNN_fc, self).init()
         self.fc = nn.Linear(in_ch, out_ch)
 
     def forward(self, x):
         return self.fc(x)
 
-
 class HGNN_embedding(nn.Module):
-    def __init__(self, in_ch, n_hid, dropout=0.5):
-        super(HGNN_embedding, self).__init__()
+    def init(self, in_ch, n_hid, dropout=0.5):
+        super(HGNN_embedding, self).init()
         self.dropout = dropout
         self.hgc1 = HGNN_conv(in_ch, n_hid)
         self.hgc2 = HGNN_conv(n_hid, n_hid)
@@ -52,10 +50,9 @@ class HGNN_embedding(nn.Module):
         x = F.relu(self.hgc2(x, G))
         return x
 
-
 class HGNN_classifier(nn.Module):
-    def __init__(self, n_hid, n_class):
-        super(HGNN_classifier, self).__init__()
+    def init(self, n_hid, n_class):
+        super(HGNN_classifier, self).init()
         self.fc1 = nn.Linear(n_hid, n_class)
 
     def forward(self, x):

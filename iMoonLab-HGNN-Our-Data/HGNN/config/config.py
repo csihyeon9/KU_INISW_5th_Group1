@@ -1,7 +1,7 @@
+# config.py
 import os
 import yaml
 import os.path as osp
-
 
 def get_config(dir='config/config.yaml'):
     # add direction join function when parse the yaml file
@@ -24,7 +24,6 @@ def get_config(dir='config/config.yaml'):
 
     return cfg
 
-
 def check_dir(folder, mk_dir=True):
     if not osp.exists(folder):
         if mk_dir:
@@ -32,7 +31,6 @@ def check_dir(folder, mk_dir=True):
             os.mkdir(folder)
         else:
             raise Exception(f'Not exist direction {folder}')
-
 
 def check_dirs(cfg):
     check_dir(cfg['data_root'], mk_dir=False)
