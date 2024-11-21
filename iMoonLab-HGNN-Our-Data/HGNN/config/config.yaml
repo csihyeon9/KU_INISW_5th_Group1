@@ -11,9 +11,10 @@ ntu2012_ft: !join [d_r, NTU2012_mvcnn_gvcnn.mat]
 
 #Hypergraph
 graph_type: &g_t hypergraph
-K_neigs: [10]
-#K_neigs: [10, 15 ]
-m_prob: 1.0
+# K_neigs: [10]
+K_neigs: [10, 15, 20]
+# m_prob: 1.0
+m_prob: 0.8
 is_probH: True
 #---------------------------------------
 # change me
@@ -46,19 +47,16 @@ result_sub_folder: !join [*r_r, !concat [ *g_t, _, *o_d ]]
 ckpt_folder: !join [*r_r, ckpt]
 
 #Train
-max_epoch: 600
-# n_hid: 128
-n_hid: 64
-# lr: 0.001
+max_epoch: 800
+n_hid: 256
 lr: 0.0005
 # milestones: [100]
-milestones: [50, 150, 300]
+milestones: [100, 300, 500]
 # gamma: 0.9
-gamma: 0.5
-# drop_out: 0.5
-drop_out: 0.6
+gamma: 0.7
+drop_out: 0.3
 print_freq: 50
 # weight_decay: 0.0005
-weight_decay: 0.01
-decay_step: 200
-decay_rate: 0.7
+weight_decay: 0.005
+decay_step: 150
+decay_rate: 0.8
