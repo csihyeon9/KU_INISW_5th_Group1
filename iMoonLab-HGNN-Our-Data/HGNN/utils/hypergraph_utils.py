@@ -78,53 +78,17 @@ def hyperedge_concat(*H_list):
                     H = tmp
     return H
 
-
-def generate_G_from_H(H, variable_weight=False):
-    """
-    calculate G from hypgraph incidence matrix H
-    :param H: hypergraph incidence matrix H
-    :param variable_weight: whether the weight of hyperedge is variable
-    :return: G
-    """
-    if type(H) != list:
-        return _generate_G_from_H(H, variable_weight)
-    else:
-        G = []
-        for sub_H in H:
-            G.append(generate_G_from_H(sub_H, variable_weight))
-        return G
-
-
-def _generate_G_from_H(H, variable_weight=False):
-    """
-    calculate G from hypgraph incidence matrix H
-    :param H: hypergraph incidence matrix H
-    :param variable_weight: whether the weight of hyperedge is variable
-    :return: G
-    """
-    H = np.array(H)
-    n_edge = H.shape[1]
-    # the weight of the hyperedge
-    W = np.ones(n_edge)
-    # the degree of the node
-    DV = np.sum(H * W, axis=1)
-    # the degree of the hyperedge
-    DE = np.sum(H, axis=0)
-
-    invDE = np.mat(np.diag(np.power(DE, -1)))
-    DV2 = np.mat(np.diag(np.power(DV, -0.5)))
-    W = np.mat(np.diag(W))
-    H = np.mat(H)
-    HT = H.T
-
-    if variable_weight:
-        DV2_H = DV2 * H
-        invDE_HT_DV2 = invDE * HT * DV2
-        return DV2_H, W, invDE_HT_DV2
-    else:
-        G = DV2 * H * W * invDE * HT * DV2
-        return G
-
+def generate_G_from_H(H):
+    """Generate G matrix from hypergraph incidence matrix H"""
+    D_v = np.sum(H, axis=1)
+    D_e = np.sum(H, axis=0)
+    
+    D_v_inv = np.divide(1., np.sqrt(D_v), where=D_v!=0)
+    D_e_inv = np.divide(1., np.sqrt(D_e), where=D_e!=0)
+    
+    G = np.diag(D_v_inv) @ H @ np.diag(D_e_inv) @ H.T @ np.diag(D_v_inv)
+    
+    return G
 
 def construct_H_with_KNN_from_distance(dis_mat, k_neig, is_probH=True, m_prob=1):
     """
@@ -179,4 +143,19 @@ def construct_H_with_KNN(X, K_neigs=[10], split_diff_scale=False, is_probH=True,
             H = hyperedge_concat(H, H_tmp)
         else:
             H.append(H_tmp)
+    return H
+
+def construct_H_with_keywords(documents, threshold=0.2):
+    """Construct hypergraph incidence matrix from document keywords"""
+    n_docs = len(documents)
+    H = np.zeros((n_docs, n_docs))
+    
+    for i in range(n_docs):
+        for j in range(n_docs):
+            keywords_i = set(documents[i]['keywords'])
+            keywords_j = set(documents[j]['keywords'])
+            similarity = len(keywords_i.intersection(keywords_j)) / len(keywords_i.union(keywords_j))
+            if similarity > threshold:
+                H[i][j] = similarity
+    
     return H

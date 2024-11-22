@@ -4,12 +4,10 @@ import yaml
 import os.path as osp
 
 def get_config(dir='config/config.yaml'):
-    # add direction join function when parse the yaml file
     def join(loader, node):
         seq = loader.construct_sequence(node)
         return os.path.sep.join(seq)
 
-    # add string concatenation function when parse the yaml file
     def concat(loader, node):
         seq = loader.construct_sequence(node)
         seq = [str(tmp) for tmp in seq]
@@ -34,7 +32,6 @@ def check_dir(folder, mk_dir=True):
 
 def check_dirs(cfg):
     check_dir(cfg['data_root'], mk_dir=False)
-
     check_dir(cfg['result_root'])
     check_dir(cfg['ckpt_folder'])
     check_dir(cfg['result_sub_folder'])

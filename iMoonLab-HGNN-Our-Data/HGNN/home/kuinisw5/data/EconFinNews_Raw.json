@@ -432,18 +432,6 @@
         ]
     },
     {
-        "url": "https://www.etoday.co.kr/news/view/2418241",
-        "relation_type": "의료/바이오",
-        "keywords": [
-            "인공지능",
-            "AI",
-            "보건의료",
-            "글로벌 거버넌스",
-            "윤리적 문제",
-            " 주체"
-        ]
-    },
-    {
         "url": "https://www.hankyung.com/article/202411126506i",
         "relation_type": "경제일반",
         "keywords": [
@@ -639,15 +627,6 @@
             "특수은행",
             "영업외손익",
             "기저효과"
-        ]
-    },
-    {
-        "url": "https://www.fnnews.com/news/202411111803200528",
-        "relation_type": "정치",
-        "keywords": [
-            "기 후반기",
-            "양극화 해소",
-            "수석비서관회의"
         ]
     },
     {
@@ -1433,17 +1412,6 @@
         ]
     },
     {
-        "url": "https://www.mk.co.kr/article/11164657",
-        "relation_type": "정치",
-        "keywords": [
-            "공직선거법 위반",
-            "집행유예",
-            "항소",
-            "사법부 경의"
-        ]
-    },
-    
-    {
         "url": "https://www.newsis.com/view/NISX20241105_0002947280",
         "relation_type": "생활경제",
         "keywords": [
@@ -1738,27 +1706,6 @@
     },
     {
         "url": "https://www.yna.co.kr/view/AKR20241105109300009?input=1195m",
-        "relation_type": "국제무역",
-        "keywords": [
-            "미국과 EU 무역정책",
-            "고율 관세",
-            "세계무역기구(WTO)",
-            "중국산 전기차"
-        ]
-    },
-    {
-        "url": "https://www.yna.co.kr/view/AKR20241105109300009?input=1195m",
-        "relation_type": "정치/경제",
-        "keywords": [
-            "리커창",
-            "안와르 이브라힘",
-            "브릭스(BRICS)",
-            "친중 성향",
-            "친러 성향"
-        ]
-    },
-    {
-        "url": "https://www.yna.co.kr/view/AKR20241105109300009?input=1195m",
         "relation_type": "경제일반",
         "keywords": [
             "무역 관행",
@@ -1795,14 +1742,6 @@
     },
     {
         "url": "https://www.seoul.co.kr/news/economy/2024/11/04/20241104500111?wlog_tag3=naver",
-        "relation_type": "기후",
-        "keywords": [
-            "탄소 중립",
-            "온실가스 감축"
-        ]
-    },
-    {
-        "url": "https://www.seoul.co.kr/news/economy/2024/11/04/20241104500111?wlog_tag3=naver",
         "relation_type": "산업/재계",
         "keywords": [
             "생산자물가",
@@ -1829,16 +1768,6 @@
             "순환경제",
             "국제 협력",
             "친환경 분야"
-        ]
-    },
-    {
-        "url": "https://www.yna.co.kr/view/AKR20241105044300003?input=1195m",
-        "relation_type": "기후",
-        "keywords": [
-            "탄소중립 목표",
-            "재생에너지",
-            "산림",
-            "탄소중립"
         ]
     },
     {
@@ -1871,15 +1800,6 @@
         ]
     },
     {
-        "url": "https://www.yna.co.kr/view/AKR20241105137200104?input=1195m",
-        "relation_type": "경제정책",
-        "keywords": [
-            "부양책",
-            "주택 공급",
-            "부동산 경기"
-        ]
-    },
-    {
         "url": "https://www.fnnews.com/news/202411051519373941",
         "relation_type": "경제일반",
         "keywords": [
@@ -1902,29 +1822,12 @@
     },
     {
         "url": "https://www.fnnews.com/news/202411051519373941",
-        "relation_type": "경제정책",
-        "keywords": [
-            "정상외교",
-            "경제성과",
-            "세일즈 외교"
-        ]
-    },
-    {
-        "url": "https://www.fnnews.com/news/202411051519373941",
         "relation_type": "산업/재계",
         "keywords": [
             "원전",
             "방산",
             "플랜트",
             "새 유망산업"
-        ]
-    },
-    {
-        "url": "https://www.fnnews.com/news/202411051519373941",
-        "relation_type": "세금",
-        "keywords": [
-            "상속세",
-            "자녀공제"
         ]
     },
     {
@@ -1940,26 +1843,6 @@
         ]
     },
     {
-        "url": "https://www.yna.co.kr/view/AKR20241105097800062?input=1195m",
-        "relation_type": "경제정책",
-        "keywords": [
-            "국비",
-            "수소경제도시",
-            "기반 구축"
-        ]
-    },
-    {
-        "url": "https://www.etoday.co.kr/news/view/2416493",
-        "relation_type": "경제정책",
-        "keywords": [
-            "공정거래 자율준수제도",
-            "Compliance Program (CP)",
-            "공정거래법",
-            "내부 준법 시스템",
-            "행동 규범"
-        ]
-    },
-    {
         "url": "https://www.etoday.co.kr/news/view/2416493",
         "relation_type": "산업/재계",
         "keywords": [
@@ -1967,16 +1850,6 @@
             "투명한 조직문화",
             "리스크 최소화",
             "사업 추진"
-        ]
-    },
-    {
-        "url": "https://www.yna.co.kr/view/AKR20241105057600003?input=1195m",
-        "relation_type": "경제정책",
-        "keywords": [
-            "무역기술장벽(TBT)",
-            "해외인증",
-            "수출",
-            "동반성장"
         ]
     },
     {
@@ -1989,16 +1862,6 @@
     },
     {
         "url": "https://www.yna.co.kr/view/AKR20241105118900530?input=1195m",
-        "relation_type": "경제정책",
-        "keywords": [
-            "저출산고령사회위원회",
-            "경제단체 민관협의체",
-            "일·가정 양립 문화",
-            "범사회적 인식 제고"
-        ]
-    },
-    {
-        "url": "https://www.yna.co.kr/view/AKR20241105118900530?input=1195m",
         "relation_type": "산업/재계",
         "keywords": [
             "한국경영자총협회",
@@ -2007,16 +1870,6 @@
             "한국무역협회",
             "중소기업중앙회",
             "중견기업연합회"
-        ]
-    },
-    {
-        "url": "https://www.yna.co.kr/view/AKR20241104136700003?input=1195m",
-        "relation_type": "경제협력",
-        "keywords": [
-            "한일 경제협력",
-            "스타트업 생태계",
-            "정부 차원의 경제협력",
-            "경제안보"
         ]
     },
     {
@@ -2433,1123 +2286,6 @@
             "산업 혁신",
             "협력체계",
             "기술 분야"
-        ]
-    },
-    
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005048226",
-        "relation_type": "금융시장",
-        "keywords": [
-            "스타벅스",
-            "매출 감소",
-            "주당 순이익",
-            "2025 회계연도",
-            "동일 매장 매출"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005048226",
-        "relation_type": "생활경제",
-        "keywords": [
-            "커피값",
-            "방문자 수 감소",
-            "소비자 부담",
-            "주문 시간대 대기"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005048226",
-        "relation_type": "글로벌경제",
-        "keywords": [
-            "미국 시장",
-            "중국 시장",
-            "북미 지역 매출",
-            "최대 커피 시장"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "삼성바이오로직스",
-            "바이오의약품",
-            "CDMO",
-            "매출 성장",
-            "영업이익"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
-        "relation_type": "글로벌경제",
-        "keywords": [
-            "CMO 계약",
-            "수주 계약",
-            "수주 잔고",
-            "글로벌 제약사",
-            "바이오시밀러"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
-        "relation_type": "금융시장",
-        "keywords": [
-            "분기 최대 매출",
-            "연 매출 4조원 돌파",
-            "수익 증가",
-            "영업이익",
-            "재무 성과"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
-        "relation_type": "중기/벤처",
-        "keywords": [
-            "5공장",
-            "ADC 생산시설",
-            "항체약물접합체",
-            "포트폴리오 확장",
-            "생산 능력 확대"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
-        "relation_type": "금융시장",
-        "keywords": [
-            "뉴욕 증시",
-            "국채 금리",
-            "다우 평균 지수",
-            "S&P500",
-            "나스닥 지수"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
-        "relation_type": "글로벌경제",
-        "keywords": [
-            "미 국채",
-            "Fed",
-            "금리 인하",
-            "트럼프 트레이드",
-            "인플레이션"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "맥도날드",
-            "스타벅스",
-            "코카콜라",
-            "테슬라",
-            "IBM"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
-        "relation_type": "미시경제학",
-        "keywords": [
-            "고용",
-            "소비",
-            "경제 지표",
-            "Fed 금리",
-            "시장 조정"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/050/0000081249",
-        "relation_type": "부동산",
-        "keywords": [
-            "부산광역시",
-            "사하구",
-            "노후 주택",
-            "신축 아파트",
-            "주택 공급"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/050/0000081249",
-        "relation_type": "생활경제",
-        "keywords": [
-            "생활 편의시설",
-            "교육 여건",
-            "괴정생활권",
-            "교통 접근성",
-            "산업단지"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/050/0000081249",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "SM그룹",
-            "티케이케미칼",
-            "사하 경남아너스빌",
-            "부산 도시철도",
-            "부산 주거시장"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "두산그룹",
-            "두산에너빌리티",
-            "두산로보틱스",
-            "사업구조 개편",
-            "두산밥캣"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
-        "relation_type": "금융시장",
-        "keywords": [
-            "합병 비율",
-            "소액 주주",
-            "행동주의 펀드",
-            "특별 배당",
-            "금융당국"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
-        "relation_type": "글로벌경제",
-        "keywords": [
-            "농업 시장",
-            "건설 분야",
-            "소형 장비",
-            "2030년 목표",
-            "시너지 효과"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
-        "relation_type": "중기/벤처",
-        "keywords": [
-            "두산로보틱스",
-            "협동로봇",
-            "소형모듈원자로",
-            "수소 터빈",
-            "신규 투자"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "삼성전자",
-            "이재용",
-            "컨트롤타워",
-            "조직 관료화",
-            "경영 공백"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
-        "relation_type": "금융경제",
-        "keywords": [
-            "오너리스크",
-            "사법 리스크",
-            "주가 하락",
-            "기업 가치",
-            "누적초과수익률"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
-        "relation_type": "글로벌경제",
-        "keywords": [
-            "반도체 보조금",
-            "해외 경쟁",
-            "국가 지원",
-            "정부 정책 변화",
-            "기술 경쟁력"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
-        "relation_type": "생활경제",
-        "keywords": [
-            "구성원 자부심",
-            "인재영입",
-            "기술 유출",
-            "조직 소통",
-            "지배구조 개선"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
-        "relation_type": "금융",
-        "keywords": [
-            "모건스탠리",
-            "SK하이닉스",
-            "자본시장법",
-            "불건전 영업행위",
-            "선행매매"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
-        "relation_type": "금융시장",
-        "keywords": [
-            "목표주가",
-            "투자의견 변경",
-            "시장감시",
-            "금융감독원",
-            "매도 리포트"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
-        "relation_type": "글로벌경제",
-        "keywords": [
-            "반도체 시장",
-            "투자 보고서",
-            "목표가 변경",
-            "시장 반응",
-            "SK하이닉스 실적"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
-        "relation_type": "증권",
-        "keywords": [
-            "주가 하락",
-            "대량 매도",
-            "순매도 수량",
-            "시장 조정",
-            "한국거래소"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
-        "relation_type": "금융",
-        "keywords": [
-            "IFRS17",
-            "해약환급금준비금",
-            "배당가능이익",
-            "자본건전성",
-            "K-ICS"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
-        "relation_type": "증권",
-        "keywords": [
-            "주가순자산비율(PBR)",
-            "대형주",
-            "중소형주",
-            "배당주",
-            "금융 규제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
-        "relation_type": "금융시장",
-        "keywords": [
-            "양극화 현상",
-            "금융 규제",
-            "배당가능이익",
-            "보험주 상승률",
-            "자본건전성"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
-        "relation_type": "미시경제학",
-        "keywords": [
-            "금리 변동",
-            "현금흐름 불확실성",
-            "부채 평가",
-            "재무 안정성",
-            "자본 배분"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
-        "relation_type": "증권",
-        "keywords": [
-            "주당순자산가치(BPS)",
-            "목표주가 상향",
-            "순매도세",
-            "청산가치",
-            "외국인 자금 흐름"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "AI 투자",
-            "고대역폭메모리(HBM)",
-            "글로벌 반도체 시장",
-            "외국인 자금 유입",
-            "대만 증시"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "AI 경쟁력",
-            "시장 점유율",
-            "기술 격차",
-            "업황 우려",
-            "반도체 투톱"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
-        "relation_type": "금융시장",
-        "keywords": [
-            "코리아 패싱",
-            "외국인 지분율",
-            "시장 신뢰도",
-            "저가 매수세",
-            "밸류에이션"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049021",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "AI 대전환",
-            "로컬 서비스",
-            "기술 혁신",
-            "시장 경쟁력",
-            "정보 요약 서비스"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049021",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "글로벌 빅테크",
-            "챗GPT",
-            "AI 투자",
-            "기술 격차",
-            "글로벌 AI 서비스"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049021",
-        "relation_type": "증권",
-        "keywords": [
-            "주가 하락",
-            "기술 장벽",
-            "상장사 경쟁력",
-            "시가총액 감소",
-            "투자 매력 감소"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049021",
-        "relation_type": "벤처기업",
-        "keywords": [
-            "AI 스타트업",
-            "소프트웨어 개발",
-            "비용 장벽",
-            "시장 진입",
-            "혁신 기술"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
-        "relation_type": "금융",
-        "keywords": [
-            "당기순이익",
-            "판매관리비",
-            "대손비용",
-            "신규 조달 금리",
-            "연체율"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
-        "relation_type": "금융시장",
-        "keywords": [
-            "카드 대출",
-            "신용판매",
-            "자본조달",
-            "금리 인상",
-            "건전성"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
-        "relation_type": "미시경제학",
-        "keywords": [
-            "소비자 금융",
-            "금융 비용",
-            "대손충당금",
-            "수익성 관리",
-            "효율 경영"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "시장 점유율",
-            "카드 업계",
-            "업계 순위",
-            "미래성장기반",
-            "데이터 사업"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "뇌물 공여",
-            "회계 부정",
-            "공매도 보고서",
-            "자본시장 규제",
-            "범죄인 인도 조약"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
-        "relation_type": "금융",
-        "keywords": [
-            "공모채 발행",
-            "재생에너지 투자",
-            "시장 신뢰",
-            "규제 리스크",
-            "외환시장 충격"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
-        "relation_type": "증권",
-        "keywords": [
-            "주가 폭락",
-            "자산 규모",
-            "공매도",
-            "주식 시장 반응",
-            "기업 가치"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "재생에너지",
-            "태양열 계약",
-            "시장 진입",
-            "글로벌 투자",
-            "경제적 영향"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "반독점 소송",
-            "시장 점유율",
-            "광고 매출",
-            "구글 검색",
-            "브라우저 시장"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
-        "relation_type": "금융",
-        "keywords": [
-            "기업 분할",
-            "자산 매각",
-            "매각 평가",
-            "투자자 신뢰",
-            "기술 규제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
-        "relation_type": "증권",
-        "keywords": [
-            "매각 가능성",
-            "시장 반응",
-            "주식 평가",
-            "기술주 투자",
-            "기업 가치 하락"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "빅테크 규제",
-            "독점 해소",
-            "기술 의존도",
-            "시장 경쟁력",
-            "소송 장기화"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
-        "relation_type": "금융",
-        "keywords": [
-            "가상자산 과세",
-            "소득세법",
-            "금융투자소득세",
-            "세수 결손",
-            "공제한도"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
-        "relation_type": "미시경제학",
-        "keywords": [
-            "투자소득",
-            "세금 정책",
-            "감세 포퓰리즘",
-            "소득세",
-            "형평성"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
-        "relation_type": "금융시장",
-        "keywords": [
-            "정책 변화",
-            "투자자 기대심리",
-            "가상자산 시장",
-            "시장 불확실성",
-            "정부 정책"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
-        "relation_type": "경제일반",
-        "keywords": [
-            "세법 개정",
-            "경제적 영향",
-            "정책 논의",
-            "시장 신뢰",
-            "학계 평가"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
-        "relation_type": "증권",
-        "keywords": [
-            "순매수 전환",
-            "주가 저점",
-            "목표주가 상향",
-            "외국인 투자",
-            "주식 시장 반응"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
-        "relation_type": "금융시장",
-        "keywords": [
-            "투자 심리",
-            "코스피 상승",
-            "밸류에이션",
-            "저가 매수",
-            "시장 전망"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "엔비디아 협력",
-            "AI 반도체",
-            "고대역폭 메모리",
-            "HBM 공급",
-            "반도체 시장"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "기술 리더십",
-            "시장 점유율",
-            "DS부문",
-            "기업가치",
-            "투자 전략"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/003/0012869035",
-        "relation_type": "금융",
-        "keywords": [
-            "디지털 자산",
-            "토큰증권(STO)",
-            "실물연계자산(RWA)",
-            "거래 플랫폼",
-            "자산 토큰화"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/003/0012869035",
-        "relation_type": "금융시장",
-        "keywords": [
-            "블록체인 네트워크",
-            "STO 거래소",
-            "RWA 거래",
-            "디지털 귀금속",
-            "자산 보안"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/003/0012869035",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "디지털 금융",
-            "아시아 금융 얼라이언스",
-            "글로벌 확장",
-            "디지털 자산 인프라",
-            "지역 간 협력"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/003/0012869035",
-        "relation_type": "벤처기업",
-        "keywords": [
-            "블록체인 기술",
-            "센골드 인수",
-            "신규 플랫폼",
-            "스타트업 생태계",
-            "기술 혁신"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
-        "relation_type": "증권",
-        "keywords": [
-            "밸류업 공시",
-            "기업가치 제고계획",
-            "주주환원",
-            "자사주 소각",
-            "ROE 목표"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
-        "relation_type": "금융시장",
-        "keywords": [
-            "주가 반응",
-            "투자자 신뢰",
-            "외국인 순매도",
-            "차익 실현",
-            "시장 기대"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "3분기 실적",
-            "내수 소비 부진",
-            "경영권 분쟁",
-            "발행주식 감축",
-            "성장 전략"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
-        "relation_type": "경제일반",
-        "keywords": [
-            "주식시장 동향",
-            "재무 성과",
-            "시장 신뢰도",
-            "기업 평가",
-            "거버넌스 개선"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
-        "relation_type": "증권",
-        "keywords": [
-            "3분기 실적",
-            "목표주가 상향",
-            "컨센서스 초과",
-            "최대 수주",
-            "CMO 계약"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
-        "relation_type": "금융시장",
-        "keywords": [
-            "주가 상승",
-            "시가총액 경쟁",
-            "미생물보안법",
-            "글로벌 제약사",
-            "수주 환경"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "4공장 상업화",
-            "5공장 수주",
-            "바이오시밀러",
-            "생산능력 확대",
-            "장기 계약"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "CMO 시장",
-            "미국 생물보안법",
-            "글로벌 경쟁",
-            "의약품 시장",
-            "중국산 의약품 견제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005105831",
-        "relation_type": "벤처기업",
-        "keywords": [
-            "K-스타트업 그랜드 챌린지",
-            "스타트업코리아 특별비자",
-            "창업 지원",
-            "글로벌 인바운드",
-            "창업 생태계"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005105831",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "외국인 창업자",
-            "스타트업 생태계",
-            "비자 문제",
-            "유학생 창업",
-            "스케일업 지원"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005105831",
-        "relation_type": "금융",
-        "keywords": [
-            "벤처캐피탈 신뢰",
-            "글로벌 스타트업센터",
-            "투자 유치",
-            "창업 자본",
-            "KPI 문제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/008/0005105831",
-        "relation_type": "경제일반",
-        "keywords": [
-            "정부 정책",
-            "창업비자 개선",
-            "민간위원회",
-            "인바운드 전략",
-            "글로벌화"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/001/0015007924",
-        "relation_type": "금융경제",
-        "keywords": [
-            "원/달러 환율",
-            "환율 변동성",
-            "시장 안정화",
-            "강달러 현상",
-            "외환시장 개입"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/001/0015007924",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "강달러 배경",
-            "중동 리스크",
-            "미국 대선 영향",
-            "트럼프 공약",
-            "세계 외환시장"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/001/0015007924",
-        "relation_type": "경제일반",
-        "keywords": [
-            "환율 정책",
-            "금융시장 반응",
-            "11월 대선 변수",
-            "FOMC 결정",
-            "한국 경제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "LCC 업계",
-            "매출 증가",
-            "M&A 기회",
-            "통합 LCC",
-            "대명소노그룹"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "민간항공기 시장",
-            "국내 항공업계",
-            "유럽 노선",
-            "미주 노선",
-            "고물가 시대"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
-        "relation_type": "증권",
-        "keywords": [
-            "LCC 매출",
-            "투자 전략",
-            "M&A 시장",
-            "티웨이항공",
-            "에어프레미아"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
-        "relation_type": "경제일반",
-        "keywords": [
-            "소비자 편익",
-            "항공산업 경쟁",
-            "운수권 배분",
-            "슬롯 규제",
-            "대한항공 합병"
-        ]
-    }, 
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869210",
-        "relation_type": "산업/재계",
-        "keywords": [
-            "국가핵심기술",
-            "리튬이차전지",
-            "양극재 기술",
-            "M&A 규제",
-            "기술 유출 방지"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869210",
-        "relation_type": "금융경제",
-        "keywords": [
-            "사모펀드 엑시트",
-            "해외 투자 제한",
-            "기술 보호 정책",
-            "M&A 심의",
-            "산업부 규제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869210",
-        "relation_type": "경제일반",
-        "keywords": [
-            "기업 경영권 분쟁",
-            "해외 매각 리스크",
-            "국내 산업 보호",
-            "기술 생태계",
-            "글로벌 경쟁력"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869200",
-        "relation_type": "증권",
-        "keywords": [
-            "커버드콜 ETF",
-            "옵션 매도 프리미엄",
-            "시장 횡보 전략",
-            "ETF 다각화",
-            "나스닥100 지수"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869200",
-        "relation_type": "금융경제",
-        "keywords": [
-            "옵션 전략",
-            "ETF 순자산 증가",
-            "분배율 목표",
-            "데일리 옵션",
-            "ETF 수출"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869200",
-        "relation_type": "경제일반",
-        "keywords": [
-            "금융 소비자 보호",
-            "상품 다양화",
-            "시장 전망",
-            "투자자 선택",
-            "ETF 규제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
-        "relation_type": "증권",
-        "keywords": [
-            "S&P500 성장주",
-            "ETF 장기 투자",
-            "기술주 변동성",
-            "포트폴리오 전략",
-            "미국 주식시장"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "미국 증시",
-            "IT 섹터 비중",
-            "성장주 구성",
-            "연금투자 전략",
-            "SPYG 지수"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
-        "relation_type": "경제일반",
-        "keywords": [
-            "S&P500 우상향",
-            "연금 자산 활용",
-            "ETF 상품 전략",
-            "투자 리스크 관리",
-            "금융상품 보수"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
-        "relation_type": "금융시장",
-        "keywords": [
-            "미국 주식 주간거래",
-            "블루오션",
-            "야간 대체거래소(ATS)",
-            "거래 중단"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "FINRA",
-            "미국 증시",
-            "글로벌 증시 변동성",
-            "금융 규제"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
-        "relation_type": "증권",
-        "keywords": [
-            "투자자 보호",
-            "주간거래 서비스",
-            "손실 배상 문제",
-            "거래 취소"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
-        "relation_type": "경제일반",
-        "keywords": [
-            "서비스 중단",
-            "금융협회",
-            "거래 재개 시점",
-            "금융 규제 협력"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
-        "relation_type": "글로벌 경제",
-        "keywords": [
-            "미국 증시",
-            "IT 섹터 비중",
-            "성장주 구성",
-            "연금투자 전략",
-            "SPYG 지수"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
-        "relation_type": "경제일반",
-        "keywords": [
-            "S&P500 우상향",
-            "연금 자산 활용",
-            "ETF 상품 전략",
-            "투자 리스크 관리",
-            "금융상품 보수"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005386157",
-        "relation_type": "금융",
-        "keywords": [
-            "퇴직연금 상품",
-            "수익률 비교",
-            "연금포털",
-            "원리금 보장",
-            "비보장 상품"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005386157",
-        "relation_type": "금융시장",
-        "keywords": [
-            "퇴직연금 이동",
-            "수익률 경쟁",
-            "증권사 성과",
-            "은행권 수익률",
-            "연금 시장 규모"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005386157",
-        "relation_type": "경제일반",
-        "keywords": [
-            "물가상승률",
-            "위험자산 투자",
-            "안전자산 배분",
-            "연평균 수익률",
-            "금융소비자 선택"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049468",
-        "relation_type": "금융",
-        "keywords": [
-            "퇴직연금 실물이전",
-            "연금 계좌 리밸런싱",
-            "타깃데이트펀드",
-            "원금 보장형",
-            "실적 배당형 상품"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049468",
-        "relation_type": "금융시장",
-        "keywords": [
-            "미국 빅테크 투자",
-            "ETF 포트폴리오",
-            "퇴직연금 적립금",
-            "수익률 비교",
-            "증권사 연금 성과"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/015/0005049468",
-        "relation_type": "경제일반",
-        "keywords": [
-            "인플레이션 대응",
-            "장기 투자 전략",
-            "세대별 투자 성과",
-            "퇴직연금 시장",
-            "고수익 투자 사례"
         ]
     },
     
@@ -4193,17 +2929,6 @@
     },
     {
         "url": "https://n.news.naver.com/mnews/article/005/0001740492",
-        "relation_type": "노사관계",
-        "keywords": [
-            "임금 협상",
-            "근무제 변경",
-            "단체 협약",
-            "노사 교섭",
-            "노동조합"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/005/0001740492",
         "relation_type": "산업/재계",
         "keywords": [
             "카카오",
@@ -4784,41 +3509,6 @@
         ]
     },
     {
-        "url": "https://n.news.naver.com/mnews/article/009/0005400850",
-        "relation_type": "투자 전략",
-        "keywords": [
-            "안전자산",
-            "위험자산",
-            "국내채권",
-            "미국 주식",
-            "리츠",
-            "비트코인 전망",
-            "금리 변동",
-            "자산 포트폴리오"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005400850",
-        "relation_type": "경제 전망",
-        "keywords": [
-            "트럼프 2기 경제",
-            "미국 소비",
-            "기업 이익률",
-            "금리",
-            "인플레이션"
-        ]
-    },
-    {
-        "url": "https://n.news.naver.com/mnews/article/009/0005400850",
-        "relation_type": "가상자산",
-        "keywords": [
-            "비트코인",
-            "기관 투자자",
-            "ETF",
-            "코인 시장"
-        ]
-    },
-    {
         "url": "https://n.news.naver.com/mnews/article/011/0004418170",
         "relation_type": "산업/재계",
         "keywords": [
@@ -4903,8 +3593,1090 @@
             "차세대 차량",
             "전략적 전환"
         ]
-    }
-
-     
+    },
+    
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005048226",
+        "relation_type": "금융시장",
+        "keywords": [
+            "스타벅스",
+            "매출 감소",
+            "주당 순이익",
+            "2025 회계연도",
+            "동일 매장 매출"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005048226",
+        "relation_type": "생활경제",
+        "keywords": [
+            "커피값",
+            "방문자 수 감소",
+            "소비자 부담",
+            "주문 시간대 대기"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005048226",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "미국 시장",
+            "중국 시장",
+            "북미 지역 매출",
+            "최대 커피 시장"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "삼성바이오로직스",
+            "바이오의약품",
+            "CDMO",
+            "매출 성장",
+            "영업이익"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "CMO 계약",
+            "수주 계약",
+            "수주 잔고",
+            "글로벌 제약사",
+            "바이오시밀러"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
+        "relation_type": "금융시장",
+        "keywords": [
+            "분기 최대 매출",
+            "연 매출 4조원 돌파",
+            "수익 증가",
+            "영업이익",
+            "재무 성과"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005384433",
+        "relation_type": "중기/벤처",
+        "keywords": [
+            "5공장",
+            "ADC 생산시설",
+            "항체약물접합체",
+            "포트폴리오 확장",
+            "생산 능력 확대"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
+        "relation_type": "금융시장",
+        "keywords": [
+            "뉴욕 증시",
+            "국채 금리",
+            "다우 평균 지수",
+            "S&P500",
+            "나스닥 지수"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "미 국채",
+            "Fed",
+            "금리 인하",
+            "트럼프 트레이드",
+            "인플레이션"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "맥도날드",
+            "스타벅스",
+            "코카콜라",
+            "테슬라",
+            "IBM"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/277/0005489028",
+        "relation_type": "미시경제학",
+        "keywords": [
+            "고용",
+            "소비",
+            "경제 지표",
+            "Fed 금리",
+            "시장 조정"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/050/0000081249",
+        "relation_type": "부동산",
+        "keywords": [
+            "부산광역시",
+            "사하구",
+            "노후 주택",
+            "신축 아파트",
+            "주택 공급"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/050/0000081249",
+        "relation_type": "생활경제",
+        "keywords": [
+            "생활 편의시설",
+            "교육 여건",
+            "괴정생활권",
+            "교통 접근성",
+            "산업단지"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/050/0000081249",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "SM그룹",
+            "티케이케미칼",
+            "사하 경남아너스빌",
+            "부산 도시철도",
+            "부산 주거시장"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "두산그룹",
+            "두산에너빌리티",
+            "두산로보틱스",
+            "사업구조 개편",
+            "두산밥캣"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
+        "relation_type": "금융시장",
+        "keywords": [
+            "합병 비율",
+            "소액 주주",
+            "행동주의 펀드",
+            "특별 배당",
+            "금융당국"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "농업 시장",
+            "건설 분야",
+            "소형 장비",
+            "2030년 목표",
+            "시너지 효과"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/658/0000086516",
+        "relation_type": "중기/벤처",
+        "keywords": [
+            "두산로보틱스",
+            "협동로봇",
+            "소형모듈원자로",
+            "수소 터빈",
+            "신규 투자"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "삼성전자",
+            "이재용",
+            "컨트롤타워",
+            "조직 관료화",
+            "경영 공백"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
+        "relation_type": "금융경제",
+        "keywords": [
+            "오너리스크",
+            "사법 리스크",
+            "주가 하락",
+            "기업 가치",
+            "누적초과수익률"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "반도체 보조금",
+            "해외 경쟁",
+            "국가 지원",
+            "정부 정책 변화",
+            "기술 경쟁력"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/088/0000911235",
+        "relation_type": "생활경제",
+        "keywords": [
+            "구성원 자부심",
+            "인재영입",
+            "기술 유출",
+            "조직 소통",
+            "지배구조 개선"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
+        "relation_type": "금융",
+        "keywords": [
+            "모건스탠리",
+            "SK하이닉스",
+            "자본시장법",
+            "불건전 영업행위",
+            "선행매매"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
+        "relation_type": "금융시장",
+        "keywords": [
+            "목표주가",
+            "투자의견 변경",
+            "시장감시",
+            "금융감독원",
+            "매도 리포트"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "반도체 시장",
+            "투자 보고서",
+            "목표가 변경",
+            "시장 반응",
+            "SK하이닉스 실적"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/014/0005258589",
+        "relation_type": "증권",
+        "keywords": [
+            "주가 하락",
+            "대량 매도",
+            "순매도 수량",
+            "시장 조정",
+            "한국거래소"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
+        "relation_type": "금융",
+        "keywords": [
+            "IFRS17",
+            "해약환급금준비금",
+            "배당가능이익",
+            "자본건전성",
+            "K-ICS"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
+        "relation_type": "증권",
+        "keywords": [
+            "주가순자산비율(PBR)",
+            "대형주",
+            "중소형주",
+            "배당주",
+            "금융 규제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
+        "relation_type": "금융시장",
+        "keywords": [
+            "양극화 현상",
+            "금융 규제",
+            "배당가능이익",
+            "보험주 상승률",
+            "자본건전성"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385669",
+        "relation_type": "미시경제학",
+        "keywords": [
+            "금리 변동",
+            "현금흐름 불확실성",
+            "부채 평가",
+            "재무 안정성",
+            "자본 배분"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
+        "relation_type": "증권",
+        "keywords": [
+            "주당순자산가치(BPS)",
+            "목표주가 상향",
+            "순매도세",
+            "청산가치",
+            "외국인 자금 흐름"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "AI 투자",
+            "고대역폭메모리(HBM)",
+            "글로벌 반도체 시장",
+            "외국인 자금 유입",
+            "대만 증시"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "AI 경쟁력",
+            "시장 점유율",
+            "기술 격차",
+            "업황 우려",
+            "반도체 투톱"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049033",
+        "relation_type": "금융시장",
+        "keywords": [
+            "코리아 패싱",
+            "외국인 지분율",
+            "시장 신뢰도",
+            "저가 매수세",
+            "밸류에이션"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049021",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "AI 대전환",
+            "로컬 서비스",
+            "기술 혁신",
+            "시장 경쟁력",
+            "정보 요약 서비스"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049021",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "글로벌 빅테크",
+            "챗GPT",
+            "AI 투자",
+            "기술 격차",
+            "글로벌 AI 서비스"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049021",
+        "relation_type": "증권",
+        "keywords": [
+            "주가 하락",
+            "기술 장벽",
+            "상장사 경쟁력",
+            "시가총액 감소",
+            "투자 매력 감소"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
+        "relation_type": "금융",
+        "keywords": [
+            "당기순이익",
+            "판매관리비",
+            "대손비용",
+            "신규 조달 금리",
+            "연체율"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
+        "relation_type": "금융시장",
+        "keywords": [
+            "카드 대출",
+            "신용판매",
+            "자본조달",
+            "금리 인상",
+            "건전성"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
+        "relation_type": "미시경제학",
+        "keywords": [
+            "소비자 금융",
+            "금융 비용",
+            "대손충당금",
+            "수익성 관리",
+            "효율 경영"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/648/0000030081",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "시장 점유율",
+            "카드 업계",
+            "업계 순위",
+            "미래성장기반",
+            "데이터 사업"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "뇌물 공여",
+            "회계 부정",
+            "공매도 보고서",
+            "자본시장 규제",
+            "범죄인 인도 조약"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
+        "relation_type": "금융",
+        "keywords": [
+            "공모채 발행",
+            "재생에너지 투자",
+            "시장 신뢰",
+            "규제 리스크",
+            "외환시장 충격"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
+        "relation_type": "증권",
+        "keywords": [
+            "주가 폭락",
+            "자산 규모",
+            "공매도",
+            "주식 시장 반응",
+            "기업 가치"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/008/0005117773",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "재생에너지",
+            "태양열 계약",
+            "시장 진입",
+            "글로벌 투자",
+            "경제적 영향"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "반독점 소송",
+            "시장 점유율",
+            "광고 매출",
+            "구글 검색",
+            "브라우저 시장"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
+        "relation_type": "금융",
+        "keywords": [
+            "기업 분할",
+            "자산 매각",
+            "매각 평가",
+            "투자자 신뢰",
+            "기술 규제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
+        "relation_type": "증권",
+        "keywords": [
+            "매각 가능성",
+            "시장 반응",
+            "주식 평가",
+            "기술주 투자",
+            "기업 가치 하락"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/001/0015060579",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "빅테크 규제",
+            "독점 해소",
+            "기술 의존도",
+            "시장 경쟁력",
+            "소송 장기화"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
+        "relation_type": "금융",
+        "keywords": [
+            "가상자산 과세",
+            "소득세법",
+            "금융투자소득세",
+            "세수 결손",
+            "공제한도"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
+        "relation_type": "미시경제학",
+        "keywords": [
+            "투자소득",
+            "세금 정책",
+            "감세 포퓰리즘",
+            "소득세",
+            "형평성"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
+        "relation_type": "금융시장",
+        "keywords": [
+            "정책 변화",
+            "투자자 기대심리",
+            "가상자산 시장",
+            "시장 불확실성",
+            "정부 정책"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/032/0003334070",
+        "relation_type": "경제일반",
+        "keywords": [
+            "세법 개정",
+            "경제적 영향",
+            "정책 논의",
+            "시장 신뢰",
+            "학계 평가"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
+        "relation_type": "증권",
+        "keywords": [
+            "순매수 전환",
+            "주가 저점",
+            "목표주가 상향",
+            "외국인 투자",
+            "주식 시장 반응"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
+        "relation_type": "금융시장",
+        "keywords": [
+            "투자 심리",
+            "코스피 상승",
+            "밸류에이션",
+            "저가 매수",
+            "시장 전망"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "엔비디아 협력",
+            "AI 반도체",
+            "고대역폭 메모리",
+            "HBM 공급",
+            "반도체 시장"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/119/0002886396",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "기술 리더십",
+            "시장 점유율",
+            "DS부문",
+            "기업가치",
+            "투자 전략"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/003/0012869035",
+        "relation_type": "금융",
+        "keywords": [
+            "디지털 자산",
+            "토큰증권(STO)",
+            "실물연계자산(RWA)",
+            "거래 플랫폼",
+            "자산 토큰화"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/003/0012869035",
+        "relation_type": "금융시장",
+        "keywords": [
+            "블록체인 네트워크",
+            "STO 거래소",
+            "RWA 거래",
+            "디지털 귀금속",
+            "자산 보안"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/003/0012869035",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "디지털 금융",
+            "아시아 금융 얼라이언스",
+            "글로벌 확장",
+            "디지털 자산 인프라",
+            "지역 간 협력"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
+        "relation_type": "증권",
+        "keywords": [
+            "밸류업 공시",
+            "기업가치 제고계획",
+            "주주환원",
+            "자사주 소각",
+            "ROE 목표"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
+        "relation_type": "금융시장",
+        "keywords": [
+            "주가 반응",
+            "투자자 신뢰",
+            "외국인 순매도",
+            "차익 실현",
+            "시장 기대"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "3분기 실적",
+            "내수 소비 부진",
+            "경영권 분쟁",
+            "발행주식 감축",
+            "성장 전략"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005387627",
+        "relation_type": "경제일반",
+        "keywords": [
+            "주식시장 동향",
+            "재무 성과",
+            "시장 신뢰도",
+            "기업 평가",
+            "거버넌스 개선"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
+        "relation_type": "증권",
+        "keywords": [
+            "3분기 실적",
+            "목표주가 상향",
+            "컨센서스 초과",
+            "최대 수주",
+            "CMO 계약"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
+        "relation_type": "금융시장",
+        "keywords": [
+            "주가 상승",
+            "시가총액 경쟁",
+            "미생물보안법",
+            "글로벌 제약사",
+            "수주 환경"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "4공장 상업화",
+            "5공장 수주",
+            "바이오시밀러",
+            "생산능력 확대",
+            "장기 계약"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049286",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "CMO 시장",
+            "미국 생물보안법",
+            "글로벌 경쟁",
+            "의약품 시장",
+            "중국산 의약품 견제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/008/0005105831",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "외국인 창업자",
+            "스타트업 생태계",
+            "비자 문제",
+            "유학생 창업",
+            "스케일업 지원"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/008/0005105831",
+        "relation_type": "금융",
+        "keywords": [
+            "벤처캐피탈 신뢰",
+            "글로벌 스타트업센터",
+            "투자 유치",
+            "창업 자본",
+            "KPI 문제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/008/0005105831",
+        "relation_type": "경제일반",
+        "keywords": [
+            "정부 정책",
+            "창업비자 개선",
+            "민간위원회",
+            "인바운드 전략",
+            "글로벌화"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/001/0015007924",
+        "relation_type": "금융경제",
+        "keywords": [
+            "원/달러 환율",
+            "환율 변동성",
+            "시장 안정화",
+            "강달러 현상",
+            "외환시장 개입"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/001/0015007924",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "강달러 배경",
+            "중동 리스크",
+            "미국 대선 영향",
+            "트럼프 공약",
+            "세계 외환시장"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/001/0015007924",
+        "relation_type": "경제일반",
+        "keywords": [
+            "환율 정책",
+            "금융시장 반응",
+            "11월 대선 변수",
+            "FOMC 결정",
+            "한국 경제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "LCC 업계",
+            "매출 증가",
+            "M&A 기회",
+            "통합 LCC",
+            "대명소노그룹"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "민간항공기 시장",
+            "국내 항공업계",
+            "유럽 노선",
+            "미주 노선",
+            "고물가 시대"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
+        "relation_type": "증권",
+        "keywords": [
+            "LCC 매출",
+            "투자 전략",
+            "M&A 시장",
+            "티웨이항공",
+            "에어프레미아"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005385750",
+        "relation_type": "경제일반",
+        "keywords": [
+            "소비자 편익",
+            "항공산업 경쟁",
+            "운수권 배분",
+            "슬롯 규제",
+            "대한항공 합병"
+        ]
+    }, 
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869210",
+        "relation_type": "산업/재계",
+        "keywords": [
+            "국가핵심기술",
+            "리튬이차전지",
+            "양극재 기술",
+            "M&A 규제",
+            "기술 유출 방지"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869210",
+        "relation_type": "금융경제",
+        "keywords": [
+            "사모펀드 엑시트",
+            "해외 투자 제한",
+            "기술 보호 정책",
+            "M&A 심의",
+            "산업부 규제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869210",
+        "relation_type": "경제일반",
+        "keywords": [
+            "기업 경영권 분쟁",
+            "해외 매각 리스크",
+            "국내 산업 보호",
+            "기술 생태계",
+            "글로벌 경쟁력"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869200",
+        "relation_type": "증권",
+        "keywords": [
+            "커버드콜 ETF",
+            "옵션 매도 프리미엄",
+            "시장 횡보 전략",
+            "ETF 다각화",
+            "나스닥100 지수"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869200",
+        "relation_type": "금융경제",
+        "keywords": [
+            "옵션 전략",
+            "ETF 순자산 증가",
+            "분배율 목표",
+            "데일리 옵션",
+            "ETF 수출"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869200",
+        "relation_type": "경제일반",
+        "keywords": [
+            "금융 소비자 보호",
+            "상품 다양화",
+            "시장 전망",
+            "투자자 선택",
+            "ETF 규제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
+        "relation_type": "증권",
+        "keywords": [
+            "S&P500 성장주",
+            "ETF 장기 투자",
+            "기술주 변동성",
+            "포트폴리오 전략",
+            "미국 주식시장"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "미국 증시",
+            "IT 섹터 비중",
+            "성장주 구성",
+            "연금투자 전략",
+            "SPYG 지수"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
+        "relation_type": "경제일반",
+        "keywords": [
+            "S&P500 우상향",
+            "연금 자산 활용",
+            "ETF 상품 전략",
+            "투자 리스크 관리",
+            "금융상품 보수"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
+        "relation_type": "금융시장",
+        "keywords": [
+            "미국 주식 주간거래",
+            "블루오션",
+            "야간 대체거래소(ATS)",
+            "거래 중단"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "FINRA",
+            "미국 증시",
+            "글로벌 증시 변동성",
+            "금융 규제"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
+        "relation_type": "증권",
+        "keywords": [
+            "투자자 보호",
+            "주간거래 서비스",
+            "손실 배상 문제",
+            "거래 취소"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/215/0001185293",
+        "relation_type": "경제일반",
+        "keywords": [
+            "서비스 중단",
+            "금융협회",
+            "거래 재개 시점",
+            "금융 규제 협력"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
+        "relation_type": "글로벌 경제",
+        "keywords": [
+            "미국 증시",
+            "IT 섹터 비중",
+            "성장주 구성",
+            "연금투자 전략",
+            "SPYG 지수"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/018/0005869195",
+        "relation_type": "경제일반",
+        "keywords": [
+            "S&P500 우상향",
+            "연금 자산 활용",
+            "ETF 상품 전략",
+            "투자 리스크 관리",
+            "금융상품 보수"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005386157",
+        "relation_type": "금융",
+        "keywords": [
+            "퇴직연금 상품",
+            "수익률 비교",
+            "연금포털",
+            "원리금 보장",
+            "비보장 상품"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005386157",
+        "relation_type": "금융시장",
+        "keywords": [
+            "퇴직연금 이동",
+            "수익률 경쟁",
+            "증권사 성과",
+            "은행권 수익률",
+            "연금 시장 규모"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/009/0005386157",
+        "relation_type": "경제일반",
+        "keywords": [
+            "물가상승률",
+            "위험자산 투자",
+            "안전자산 배분",
+            "연평균 수익률",
+            "금융소비자 선택"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049468",
+        "relation_type": "금융",
+        "keywords": [
+            "퇴직연금 실물이전",
+            "연금 계좌 리밸런싱",
+            "타깃데이트펀드",
+            "원금 보장형",
+            "실적 배당형 상품"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049468",
+        "relation_type": "금융시장",
+        "keywords": [
+            "미국 빅테크 투자",
+            "ETF 포트폴리오",
+            "퇴직연금 적립금",
+            "수익률 비교",
+            "증권사 연금 성과"
+        ]
+    },
+    {
+        "url": "https://n.news.naver.com/mnews/article/015/0005049468",
+        "relation_type": "경제일반",
+        "keywords": [
+            "인플레이션 대응",
+            "장기 투자 전략",
+            "세대별 투자 성과",
+            "퇴직연금 시장",
+            "고수익 투자 사례"
+        ]
+    }     
 
 ]

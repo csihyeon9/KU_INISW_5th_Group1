@@ -4,11 +4,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-
+    
 class HGNN_conv(nn.Module):
     def __init__(self, in_ft, out_ft, bias=True):
         super(HGNN_conv, self).__init__()
-
         self.weight = Parameter(torch.Tensor(in_ft, out_ft))
         if bias:
             self.bias = Parameter(torch.Tensor(out_ft))
