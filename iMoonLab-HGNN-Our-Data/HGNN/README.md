@@ -1,5 +1,5 @@
 ## Hypergraph Neural Networks for News Recommendation
-Created by S. H. Kwan, K. H. Kim, S. H. Park, J. H. Lee, C. H. Jo, S. H. Cha from Korea University INISW Academy, 5th
+Created by S. H. Kwan, K. H. Kim, S. H. Park, J. H. Lee, C. H. Cho, S. H. Cha from Korea University INISW Academy, 5th
 
 ### Usage
 Create a Python virtual environment first.
