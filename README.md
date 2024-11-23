@@ -1,6 +1,15 @@
 ## Hypergraph Neural Networks for News Recommendation
 
-Created by S. H. Kwan, K. H. Kim, S. H. Park, J. H. Lee, C. H. Cho, S. H. Cha from Korea University INISW Academy, 5th  
+Created from Korea University INISW Academy, 5th, Group 1
+
+```
+@csihyeon9
+@soosookentelmanis
+@ntbboi
+@imkhkim
+@leejoon2067
+@rosey418
+```
 
 ### **Usage**
 This project uses Hypergraph Neural Networks (HGNN) to recommend news articles based on their relationships modeled using hypergraphs.
