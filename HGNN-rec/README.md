@@ -1,5 +1,5 @@
-## Hypergraph Neural Networks for News Recommendation
-Created by S. H. Kwan, K. H. Kim, S. H. Park, J. H. Lee, C. H. Jo, S. H. Cha from Korea University INISW Academy, 5th
+## Hypergraph Neural Networks for Recommendation
+Created by Soohyun Kwon, Keumhwan Kim, Seohyun Park, Junhyeok Lee, Changhee Cho, and Sihyun Cha from the 5th cohort of Korea University INISW Academy.
 
 ### Usage
 Create a Python virtual environment first.
@@ -21,4 +21,4 @@ python train.py
     }
 
 ### License
-Our code is released under MIT License (see LICENSE file for details).
+MIT License.

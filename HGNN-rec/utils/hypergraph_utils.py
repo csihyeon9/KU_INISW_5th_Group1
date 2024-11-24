@@ -1,161 +1,140 @@
-# hypergraph_utils.py
-# --------------------------------------------------------
-# Utility functions for Hypergraph
-#
-# Author: Yifan Feng
-# Date: November 2018
-# --------------------------------------------------------
+# utils/hypergraph_utils.py
 import numpy as np
+from typing import List, Dict, Union, Tuple, Optional
+from scipy import sparse
+from scipy.sparse import csr_matrix, diags
+import logging
+from scipy.sparse import csr_matrix
 
+logging.basicConfig(level=logging.WARNING)
+logging.getLogger().setLevel(logging.ERROR)
 
-def Eu_dis(x):
-    """
-    Calculate the distance among each raw of x
-    :param x: N X D
-                N: the object number
-                D: Dimension of the feature
-    :return: N X N distance matrix
-    """
-    x = np.mat(x)
-    aa = np.sum(np.multiply(x, x), 1)
-    ab = x * x.T
-    dist_mat = aa + aa.T - 2 * ab
-    dist_mat[dist_mat < 0] = 0
-    dist_mat = np.sqrt(dist_mat)
-    dist_mat = np.maximum(dist_mat, dist_mat.T)
-    return dist_mat
+class HypergraphBuilder:
+    def __init__(self, config: dict):
+        self.config = config
+        self.construction_method = config.get('construction_method', 'natural')
+        self.edge_weight_method = config.get('edge_weight_method', 'basic')
+        self.k_neigs = config.get('k_neigs', [10])
+        self.m_prob = config.get('m_prob', 1.0)
+        self.is_probH = config.get('is_probH', True)
 
+    def construct_H_from_documents(self, documents, keyword_to_idx, relation_to_idx):
+        # 메모리 효율적인 하이퍼그래프 구성
+        row_indices = []
+        col_indices = []
+        values = []
+        
+        for edge_idx, doc in enumerate(documents):
+            keywords = [kw for kw in doc['keywords'] if kw in keyword_to_idx]
+            if not keywords:
+                continue
+                
+            node_indices = [keyword_to_idx[kw] for kw in keywords]
+            row_indices.extend(node_indices)
+            col_indices.extend([edge_idx] * len(node_indices))
+            values.extend([1.0 / len(node_indices)] * len(node_indices))
+        
+        n_nodes = len(keyword_to_idx)
+        n_edges = len(documents)
+        
+        H = csr_matrix(
+            (values, (row_indices, col_indices)),
+            shape=(n_nodes, n_edges)
+        )
+        
+        W = np.ones(n_edges)
+        
+        return H, W
 
-def feature_concat(*F_list, normal_col=False):
-    """
-    Concatenate multiple modality feature. If the dimension of a feature matrix is more than two,
-    the function will reduce it into two dimension(using the last dimension as the feature dimension,
-    the other dimension will be fused as the object dimension)
-    :param F_list: Feature matrix list
-    :param normal_col: normalize each column of the feature
-    :return: Fused feature matrix
-    """
-    features = None
-    for f in F_list:
-        if f is not None and f != []:
-            # deal with the dimension that more than two
-            if len(f.shape) > 2:
-                f = f.reshape(-1, f.shape[-1])
-            # normal each column
-            if normal_col:
-                f_max = np.max(np.abs(f), axis=0)
-                f = f / f_max
-            # facing the first feature matrix appended to fused feature matrix
-            if features is None:
-                features = f
-            else:
-                features = np.hstack((features, f))
-    if normal_col:
-        features_max = np.max(np.abs(features), axis=0)
-        features = features / features_max
-    return features
+    def generate_G_from_H(self, H, W=None):
+        """메모리 효율적인 라플라시안 행렬 생성"""
+        if W is None:
+            W = np.ones(H.shape[1])
+        
+        # 희소 행렬로 계산
+        D_v = np.array(H.sum(axis=1)).flatten()
+        D_e = np.array(H.sum(axis=0)).flatten()
+        
+        # 0으로 나누는 것을 방지
+        D_v_invsqrt = np.power(D_v, -0.5, where=D_v!=0)
+        D_v_invsqrt[np.isinf(D_v_invsqrt)] = 0
+        
+        D_e_invsqrt = np.power(D_e, -0.5, where=D_e!=0)
+        D_e_invsqrt[np.isinf(D_e_invsqrt)] = 0
+        
+        # 희소 대각 행렬
+        D_v_invsqrt_mat = sparse.diags(D_v_invsqrt)
+        D_e_invsqrt_mat = sparse.diags(D_e_invsqrt)
+        W_mat = sparse.diags(W)
+        
+        # G 계산
+        G = D_v_invsqrt_mat @ H @ W_mat @ D_e_invsqrt_mat @ D_e_invsqrt_mat @ H.T @ D_v_invsqrt_mat
+        
+        return G.tocsr()
 
+    @staticmethod
+    def compute_edge_similarity(edge1_keywords: List[str], edge2_keywords: List[str]) -> float:
+        """두 하이퍼에지 간의 유사도 계산"""
+        set1 = set(edge1_keywords)
+        set2 = set(edge2_keywords)
+        
+        intersection = len(set1.intersection(set2))
+        union = len(set1.union(set2))
+        
+        return intersection / union if union > 0 else 0.0
 
-def hyperedge_concat(*H_list):
-    """
-    Concatenate hyperedge group in H_list
-    :param H_list: Hyperedge groups which contain two or more hypergraph incidence matrix
-    :return: Fused hypergraph incidence matrix
-    """
-    H = None
-    for h in H_list:
-        if h is not None and h != []:
-            # for the first H appended to fused hypergraph incidence matrix
-            if H is None:
-                H = h
-            else:
-                if type(h) != list:
-                    H = np.hstack((H, h))
+    # Legacy support: KNN 기반 하이퍼그래프 구성
+    def construct_H_with_KNN(self, 
+                           feat_mat: np.ndarray, 
+                           k_neigs: Optional[List[int]] = None
+    ) -> np.ndarray:
+        """KNN 기반 하이퍼그래프 구성 (기존 코드와의 호환성 유지)"""
+        if k_neigs is None:
+            k_neigs = self.k_neigs
+            
+        dist_mat = self._calculate_distance(feat_mat)
+        H = None
+        
+        for k in k_neigs:
+            H_k = self._construct_H_from_distance(dist_mat, k)
+            H = self._hyperedge_concat(H, H_k)
+            
+        return H
+
+    def _calculate_distance(self, feat_mat: np.ndarray) -> np.ndarray:
+        """특징 행렬로부터 거리 행렬 계산"""
+        feat_mat = np.mat(feat_mat)
+        dist_mat = np.zeros((feat_mat.shape[0], feat_mat.shape[0]))
+        
+        for i in range(feat_mat.shape[0]):
+            for j in range(i + 1, feat_mat.shape[0]):
+                dist = np.linalg.norm(feat_mat[i] - feat_mat[j])
+                dist_mat[i, j] = dist_mat[j, i] = dist
+                
+        return dist_mat
+
+    def _construct_H_from_distance(self, 
+                                 dist_mat: np.ndarray, 
+                                 k_neig: int
+    ) -> np.ndarray:
+        """거리 행렬로부터 하이퍼그래프 인시던스 행렬 구성"""
+        H = np.zeros((dist_mat.shape[0], dist_mat.shape[0]))
+        
+        for i in range(dist_mat.shape[0]):
+            idx = np.argsort(dist_mat[i])[1:k_neig+1]
+            for j in idx:
+                if self.is_probH:
+                    H[i, j] = np.exp(-dist_mat[i, j] / self.m_prob)
                 else:
-                    tmp = []
-                    for a, b in zip(H, h):
-                        tmp.append(np.hstack((a, b)))
-                    H = tmp
-    return H
+                    H[i, j] = 1.0
+                    
+        return H
 
-def generate_G_from_H(H):
-    """Generate G matrix from hypergraph incidence matrix H"""
-    D_v = np.sum(H, axis=1)
-    D_e = np.sum(H, axis=0)
-    
-    D_v_inv = np.divide(1., np.sqrt(D_v), where=D_v!=0)
-    D_e_inv = np.divide(1., np.sqrt(D_e), where=D_e!=0)
-    
-    G = np.diag(D_v_inv) @ H @ np.diag(D_e_inv) @ H.T @ np.diag(D_v_inv)
-    
-    return G
-
-def construct_H_with_KNN_from_distance(dis_mat, k_neig, is_probH=True, m_prob=1):
-    """
-    construct hypregraph incidence matrix from hypergraph node distance matrix
-    :param dis_mat: node distance matrix
-    :param k_neig: K nearest neighbor
-    :param is_probH: prob Vertex-Edge matrix or binary
-    :param m_prob: prob
-    :return: N_object X N_hyperedge
-    """
-    n_obj = dis_mat.shape[0]
-    # construct hyperedge from the central feature space of each node
-    n_edge = n_obj
-    H = np.zeros((n_obj, n_edge))
-    for center_idx in range(n_obj):
-        dis_mat[center_idx, center_idx] = 0
-        dis_vec = dis_mat[center_idx]
-        nearest_idx = np.array(np.argsort(dis_vec)).squeeze()
-        avg_dis = np.average(dis_vec)
-        if not np.any(nearest_idx[:k_neig] == center_idx):
-            nearest_idx[k_neig - 1] = center_idx
-
-        for node_idx in nearest_idx[:k_neig]:
-            if is_probH:
-                H[node_idx, center_idx] = np.exp(-dis_vec[0, node_idx] ** 2 / (m_prob * avg_dis) ** 2)
-            else:
-                H[node_idx, center_idx] = 1.0
-    return H
-
-
-def construct_H_with_KNN(X, K_neigs=[10], split_diff_scale=False, is_probH=True, m_prob=1):
-    """
-    init multi-scale hypergraph Vertex-Edge matrix from original node feature matrix
-    :param X: N_object x feature_number
-    :param K_neigs: the number of neighbor expansion
-    :param split_diff_scale: whether split hyperedge group at different neighbor scale
-    :param is_probH: prob Vertex-Edge matrix or binary
-    :param m_prob: prob
-    :return: N_object x N_hyperedge
-    """
-    if len(X.shape) != 2:
-        X = X.reshape(-1, X.shape[-1])
-
-    if type(K_neigs) == int:
-        K_neigs = [K_neigs]
-
-    dis_mat = Eu_dis(X)
-    H = []
-    for k_neig in K_neigs:
-        H_tmp = construct_H_with_KNN_from_distance(dis_mat, k_neig, is_probH, m_prob)
-        if not split_diff_scale:
-            H = hyperedge_concat(H, H_tmp)
-        else:
-            H.append(H_tmp)
-    return H
-
-def construct_H_with_keywords(documents, threshold=0.2):
-    """Construct hypergraph incidence matrix from document keywords"""
-    n_docs = len(documents)
-    H = np.zeros((n_docs, n_docs))
-    
-    for i in range(n_docs):
-        for j in range(n_docs):
-            keywords_i = set(documents[i]['keywords'])
-            keywords_j = set(documents[j]['keywords'])
-            similarity = len(keywords_i.intersection(keywords_j)) / len(keywords_i.union(keywords_j))
-            if similarity > threshold:
-                H[i][j] = similarity
-    
-    return H
+    @staticmethod
+    def _hyperedge_concat(H1: Optional[np.ndarray], 
+                         H2: np.ndarray
+    ) -> np.ndarray:
+        """하이퍼에지 연결"""
+        if H1 is None:
+            return H2
+        return np.hstack((H1, H2))
