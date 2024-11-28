@@ -1,21 +1,28 @@
-chrome.runtime.onInstalled.addListener(() => {
-    console.log("Extension installed");
-});
+// service-worker.js
+console.log('Service worker initialized');
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === "openPanel") {
-        // 사이드 패널에 텍스트를 보내기 위한 메시지 전송
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            if (tabs[0].id) {
-                chrome.scripting.executeScript({
-                    target: { tabId: tabs[0].id },
-                    func: (text) => {
-                        chrome.runtime.sendMessage({ action: "showText", text: text });
-                    },
-                    args: [request.text],
+// 아이콘 클릭으로 패널 열기/닫기 동작 설정
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch((error) => console.error('Error setting panel behavior:', error));
+
+// 텍스트 선택 후 돋보기 클릭 시
+chrome.runtime.onMessage.addListener((message, sender) => {
+    console.log('Message received:', message);
+
+    if (message.action === "openPanel") {
+        chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+            try {
+                await chrome.sidePanel.open({ tabId: tabs[0].id });
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                chrome.runtime.sendMessage({
+                    action: "analyzeText",
+                    text: message.text
                 });
+            } catch (error) {
+                console.error('Error:', error);
             }
         });
-        sendResponse({ status: "opened" });
     }
 });

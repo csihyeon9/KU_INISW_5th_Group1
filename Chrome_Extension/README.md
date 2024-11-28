@@ -1,5 +1,11 @@
-### 사용법
-1. 크롬 확장 프로그램 관리 열기
-1. 개발자 모드 켜기
-1. "압축해제된 확장 프로그램을 로드합니다." 선택
-1. 폴더 선택
+## Chrome Extension for Fin￦i$E Services
+Developed by Soohyun Kwon, Keumhwan Kim, Seohyun Park, Junhyeok Lee, Changhee Cho, and Sihyun Cha from the 5th cohort of Korea University INISW Academy.
+
+### Usage
+1. Open the Chrome Extensions management page.
+1. Enable "Developer mode".
+1. Select "Load unpacked".
+1. Choose the folder.
+
+### License
+MIT License.

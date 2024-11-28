@@ -1,12 +1,117 @@
+<!-- sidepanel.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Fin￦i$E</title>
-    <script src="sidepanel.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .reset-button {
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+        .reset-button:hover {
+            opacity: 0.7;
+        }
+        .reset-button img {
+            width: 15px;
+            height: 15px;
+        }
+        .container {
+            padding: 0 20px;
+            flex: 1;
+            position: relative;  /* 추가: 상대 위치 지정 */
+        }
+        .loading {
+            display: none;
+            /* 수정: 절대 위치로 변경하고 중앙 정렬 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #32CD32;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #content {
+            margin-top: 20px;
+            line-height: 1.6;
+            /* 추가: content가 로딩바 뒤에 있을 때 흐리게 처리 */
+            transition: opacity 0.3s;
+        }
+        #content.loading-active {
+            opacity: 0.5;
+        }
+        .error {
+            color: #e74c3c;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #fceae9;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-top: 1px solid #dee2e6;
+            text-align: center;
+        }
+        .footer h4 {
+            margin: 0;
+            font-size: 0.7rem;
+            color: #6c757d;
+        }
+    </style>
 </head>
 <body>
-    <h1>Fin￦i$E</h1>
-    <div id="content">드래그한 텍스트가 없습니다.</div>
+    <header class="header">
+        <h1>Fin￦i$E</h1>
+        <button id="resetButton" class="reset-button" title="초기화">
+            <img src="images/refresh.png" alt="초기화">
+        </button>
+    </header>
+    <div class="container">
+        <div id="content">텍스트를 드래그하면 나타나는 아이콘을 클릭해주세요.</div>
+        <div id="loading" class="loading"></div>
+    </div>
+    <footer class="footer">
+        <h4>KU INISW Academy 5th Cohort</h4>
+        <h4>권수현, 김금환, 박서현, 이준혁, 조창희, 차시현</h4>
+    </footer>
+    <script src="sidepanel.js"></script>
 </body>
 </html>
