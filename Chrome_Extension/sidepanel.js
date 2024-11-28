@@ -2,16 +2,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const contentDiv = document.getElementById('content');
     const loadingDiv = document.getElementById('loading');
+    let initialMessage = '텍스트를 드래그하면 나타나는 아이콘을 클릭해주세요.';
 
     resetButton.addEventListener('click', () => {
         chrome.storage.local.remove(['lastAnalysis'], function() {
-            contentDiv.innerHTML = '텍스트를 드래그하면 나타나는 아이콘을 클릭해주세요.';
+            contentDiv.innerHTML = initialMessage;
         });
     });
 
     chrome.storage.local.get(['lastAnalysis'], function(result) {
         if (result.lastAnalysis) {
             contentDiv.innerHTML = result.lastAnalysis;
+        } else {
+            contentDiv.innerHTML = initialMessage;
         }
     });
 
@@ -25,10 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleAnalysis(text) {
         try {
-            contentDiv.classList.add('loading-active');  // 로딩 중 content 스타일 변경
+            contentDiv.classList.add('loading-active');
             loadingDiv.style.display = 'block';
+            contentDiv.innerHTML = ''; // 로딩 중에는 내용을 비움
 
-            const response = await fetch('http://localhost:8000/service', {
+            const response = await fetch('https://finwise.p-e.kr:8000/service', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,22 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Received data:', data);
             
             const formatDate = (dateStr) => {
-                const date = new Date(dateStr);
-                return date.toLocaleString('ko-KR', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false
-                }).replace(/\. /g, '-').replace('.', '');
+                const cleanedDateStr = dateStr
+                    .replace('T', ' ')
+                    .split('.')[0];
+                return cleanedDateStr;
             };
             
             const analysisHTML = `
                 <h3>분석 결과</h3>
                 <p>${data.text}</p>
-                <small>응답 시간: ${formatDate(data["response time"])}</small>
+                <small>응답 시간: ${formatDate(data["response_time"])}</small>
             `;
             
             contentDiv.innerHTML = analysisHTML;
@@ -77,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Analysis error:', error);
         } finally {
             loadingDiv.style.display = 'none';
-            contentDiv.classList.remove('loading-active');  // 로딩 완료 후 스타일 제거
+            contentDiv.classList.remove('loading-active');
         }
     }
 });

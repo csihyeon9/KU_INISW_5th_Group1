@@ -6,7 +6,7 @@ chrome.sidePanel
   .setPanelBehavior({ openPanelOnActionClick: true })
   .catch((error) => console.error('Error setting panel behavior:', error));
 
-// 텍스트 선택 후 돋보기 클릭 시
+// 텍스트 선택 후 아이콘 클릭 시
 chrome.runtime.onMessage.addListener((message, sender) => {
     console.log('Message received:', message);
 
