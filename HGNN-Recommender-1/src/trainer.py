@@ -77,7 +77,7 @@ class Trainer:
     def _calculate_contrastive_loss(self, 
                                   embeddings: torch.Tensor, 
                                   edge_index: torch.Tensor,
-                                  temperature: float = 0.07) -> torch.Tensor:
+                                  temperature: float = 0.1) -> torch.Tensor:
         """Contrastive Loss 계산 (희소 행렬 버전)"""
         # 정규화
         embeddings = nn.functional.normalize(embeddings, dim=1)
@@ -176,3 +176,78 @@ class Trainer:
         except Exception as e:
             self.logger.error(f"Error loading checkpoint: {str(e)}")
             raise e
+        
+    def evaluate_recommendations(self, dataloader: DataLoader, k: int = 5) -> Tuple[float, float]:
+        """Precision@K와 Recall@K 계산"""
+        self.model.eval()
+        total_precision = 0
+        total_recall = 0
+        num_batches = 0
+        
+        with torch.no_grad():
+            for edge_index, edge_weight in dataloader:
+                edge_index = edge_index.to(self.device)
+                edge_weight = edge_weight.to(self.device)
+                
+                # 모델 출력
+                embeddings = self.model(edge_index, edge_weight)
+                
+                # 각 노드에 대해 Top-K 추천
+                similarities = torch.matmul(embeddings, embeddings.t())
+                
+                # 실제 연결된 노드들 (ground truth)
+                true_edges = {(i.item(), j.item()) for i, j in edge_index.t()}
+                
+                # 각 노드에 대해 평가
+                for node in range(embeddings.size(0)):
+                    # 실제 연결된 노드들
+                    true_neighbors = {j for i, j in true_edges if i == node}
+                    
+                    # Top-K 추천
+                    _, top_k_indices = similarities[node].topk(k + 1)  # +1 for excluding self
+                    recommended = set(top_k_indices.cpu().numpy()) - {node}
+                    
+                    # Precision과 Recall 계산
+                    if len(recommended) > 0:
+                        precision = len(recommended & true_neighbors) / len(recommended)
+                        total_precision += precision
+                    
+                    if len(true_neighbors) > 0:
+                        recall = len(recommended & true_neighbors) / len(true_neighbors)
+                        total_recall += recall
+                
+                num_batches += 1
+        
+        return (
+            total_precision / (num_batches * embeddings.size(0)),
+            total_recall / (num_batches * embeddings.size(0))
+        )
+    
+    def create_confusion_matrix(self, dataloader: DataLoader) -> np.ndarray:
+        """추천 결과에 대한 혼동 행렬 생성"""
+        self.model.eval()
+        num_keywords = self.model.num_keywords
+        confusion_matrix = np.zeros((num_keywords, num_keywords))
+        
+        with torch.no_grad():
+            for edge_index, edge_weight in dataloader:
+                edge_index = edge_index.to(self.device)
+                edge_weight = edge_weight.to(self.device)
+                
+                # 모델 출력
+                embeddings = self.model(edge_index, edge_weight)
+                
+                # 각 노드에 대한 추천 결과
+                similarities = torch.matmul(embeddings, embeddings.t())
+                
+                # 실제 연결과 예측 결과 비교
+                for i, j in edge_index.t():
+                    i, j = i.item(), j.item()
+                    predicted_score = similarities[i, j].item()
+                    confusion_matrix[i, j] += predicted_score
+        
+        # 정규화
+        row_sums = confusion_matrix.sum(axis=1, keepdims=True)
+        confusion_matrix = np.where(row_sums > 0, confusion_matrix / row_sums, 0)
+        
+        return confusion_matrix
