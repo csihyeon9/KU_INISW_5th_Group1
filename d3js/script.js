@@ -182,7 +182,7 @@ d3.json("hypergraph_data.json").then(function (data) {
                     .attr("y", 40)
                     .attr("width", 230)
                     .attr("font-size", "0.8em")
-                    .text(edgeDescriptions[edgeId] || 'No description available.');
+                    .text(data.edges.find(e => e.id === edgeId)?.description || 'No description available.')
             });
 
         legendItem.append("circle")
@@ -363,9 +363,8 @@ d3.json("hypergraph_data.json").then(function (data) {
     // Modify the existing code to include edge descriptions
     function createEdgeInfoTooltip(event, d) {
         const edgeId = d.edge.id;
-        const description = edgeDescriptions[edgeId] || 'No additional description available.';
+        const description = d.edge.description || 'No additional description available.';
         
-        // Create a tooltip or modal with edge information
         const tooltip = d3.select("body")
             .append("div")
             .attr("class", "edge-tooltip")
