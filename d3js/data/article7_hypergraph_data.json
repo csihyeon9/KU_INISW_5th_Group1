@@ -1,0 +1,30 @@
+{
+    "nodes": [
+        {
+            "id": "빗썸",
+            "importance": 0.01
+        },
+        {
+            "id": "연동지원금",
+            "importance": 0.01
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "빗썸",
+                "연동지원금"
+            ],
+            "description": "제공, 지원"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "빗썸",
+                "연동지원금"
+            ],
+            "description": "받으, 통하어"
+        }
+    ]
+}

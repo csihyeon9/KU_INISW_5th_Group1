@@ -1,0 +1,34 @@
+{
+    "nodes": [
+        {
+            "id": "대출",
+            "importance": 0.1
+        },
+        {
+            "id": "전세가격",
+            "importance": 0.1
+        },
+        {
+            "id": "스트레스 DSR",
+            "importance": 0.01
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "대출",
+                "전세가격"
+            ],
+            "description": "보고, 상승"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "스트레스 DSR",
+                "스트레스 DSR"
+            ],
+            "description": "상환, 지나"
+        }
+    ]
+}

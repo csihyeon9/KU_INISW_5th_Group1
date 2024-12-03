@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Graph Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto flex">
+        <div id="graph-container" class="w-3/4">
+            <svg id="network-svg" width="800" height="600"></svg>
+        </div>
+        <div id="article-tabs" class="w-1/4 p-4">
+            <div class="bg-white shadow-md rounded-lg">
+                <div class="p-4">
+                    <button id="run-script1" class="w-full mb-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="runScript1()">
+                        기사 그래프
+                    </button>
+                    <button id="run-script2" class="w-full mb-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" onclick="runScript2()">
+                        개인화 그래프
+                    </button>
+                    <div id="article-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let script1Executed = false;
+        let script2Executed = false;
+
+        function runScript1() {
+            if (!script1Executed) {
+                clearGraph();
+                const script = document.createElement('script');
+                script.src = 'script.js';
+                script.onload = () => {
+                    script1Executed = true;
+                    script2Executed = false;
+                    document.getElementById('run-script1').disabled = true;
+                    document.getElementById('run-script2').disabled = false;
+                    removeArticleList();
+                };
+                script.onerror = () => {
+                    console.error('script.js 로드 실패');
+                };
+                script.setAttribute('data-custom', 'dynamic');
+                document.body.appendChild(script);
+            }
+        }
+
+        function runScript2() {
+            if (!script2Executed) {
+                clearGraph();
+                const script = document.createElement('script');
+                script.src = 'network-graph2.js';
+                script.onload = () => {
+                    script2Executed = true;
+                    script1Executed = false;
+                    document.getElementById('run-script2').disabled = true;
+                    document.getElementById('run-script1').disabled = false;
+                    
+                    // 여기서 명시적으로 loadGraphData() 함수 호출
+                    if (typeof loadGraphData === 'function') {
+                        loadGraphData();
+                    }
+                    
+                    createArticleList();
+                };
+                script.onerror = () => {
+                    console.error('network-graph.js 로드 실패');
+                };
+                script.setAttribute('data-custom', 'dynamic');
+                document.body.appendChild(script);
+            }
+        }
+
+        function clearGraph() {
+            d3.select('#network-svg').selectAll('*').remove();
+            const dynamicScripts = document.querySelectorAll('script[data-custom="dynamic"]');
+            dynamicScripts.forEach(script => script.remove());
+        }
+
+        function createArticleList() {
+            const articleContainer = document.getElementById('article-container');
+            const articleList = document.createElement('div');
+            articleList.id = 'article-list';
+            // articleList.innerHTML = '<p>Article list will be displayed here...</p>';
+            articleContainer.appendChild(articleList);
+        }
+
+        function removeArticleList() {
+            const articleList = document.getElementById('article-list');
+            if (articleList) {
+                articleList.remove();
+            }
+        }
+    </script>
+</body>
+</html>

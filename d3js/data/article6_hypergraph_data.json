@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "손해보험",
+            "importance": 0.1
+        },
+        {
+            "id": "미스트",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "손해보험",
+                "미스트"
+            ],
+            "description": "내리면서, 넘게"
+        }
+    ]
+}

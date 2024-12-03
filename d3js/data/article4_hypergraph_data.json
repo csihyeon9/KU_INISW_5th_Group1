@@ -1,0 +1,34 @@
+{
+    "nodes": [
+        {
+            "id": "코인",
+            "importance": 0.01
+        },
+        {
+            "id": "소득세",
+            "importance": 0.1
+        },
+        {
+            "id": "세금",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "코인",
+                "소득세"
+            ],
+            "description": "놓고, 들어가었다"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "코인",
+                "세금"
+            ],
+            "description": "녹아, 결정"
+        }
+    ]
+}

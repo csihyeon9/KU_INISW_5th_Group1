@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "투자",
+            "importance": 1e-05
+        },
+        {
+            "id": "수익률",
+            "importance": 0.1
+        },
+        {
+            "id": "망",
+            "importance": 0.0001
+        },
+        {
+            "id": "해외 주식",
+            "importance": 0.1
+        },
+        {
+            "id": "금융",
+            "importance": 0.1
+        },
+        {
+            "id": "금리",
+            "importance": 0.01
+        },
+        {
+            "id": "예·적금",
+            "importance": 0.1
+        },
+        {
+            "id": "채권",
+            "importance": 0.1
+        },
+        {
+            "id": "코인",
+            "importance": 0.01
+        },
+        {
+            "id": "비트코인",
+            "importance": 0.01
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "투자",
+                "수익률"
+            ],
+            "description": "켜지, 미치지"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "투자",
+                "망"
+            ],
+            "description": "예상, 투자"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "해외 주식",
+                "망"
+            ],
+            "description": ""
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "투자",
+                "망"
+            ],
+            "description": "나오았다, 투자"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "투자",
+                "망"
+            ],
+            "description": "않, 잇어"
+        },
+        {
+            "id": "edge6",
+            "nodes": [
+                "투자",
+                "금융"
+            ],
+            "description": "된다, 앞서"
+        },
+        {
+            "id": "edge7",
+            "nodes": [
+                "금리",
+                "예·적금"
+            ],
+            "description": "하락, 예상"
+        },
+        {
+            "id": "edge8",
+            "nodes": [
+                "금리",
+                "채권"
+            ],
+            "description": "발행, 상승"
+        },
+        {
+            "id": "edge9",
+            "nodes": [
+                "코인",
+                "비트코인"
+            ],
+            "description": "대한, 보이ㄴ다"
+        },
+        {
+            "id": "edge10",
+            "nodes": [
+                "코인",
+                "비트코인"
+            ],
+            "description": ""
+        }
+    ]
+}

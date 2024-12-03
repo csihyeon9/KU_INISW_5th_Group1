@@ -1,0 +1,34 @@
+{
+    "nodes": [
+        {
+            "id": "사모펀드",
+            "importance": 0.01
+        },
+        {
+            "id": "증권신고서",
+            "importance": 0.1
+        },
+        {
+            "id": "공시심사",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "사모펀드",
+                "사모펀드"
+            ],
+            "description": "매각, 계약"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "증권신고서",
+                "공시심사"
+            ],
+            "description": "살피, 공시"
+        }
+    ]
+}

@@ -1,0 +1,130 @@
+{
+    "nodes": [
+        {
+            "id": "환율",
+            "importance": 0.3
+        },
+        {
+            "id": "통화",
+            "importance": 0.5
+        },
+        {
+            "id": "수수료",
+            "importance": 0.6
+        },
+        {
+            "id": "달러",
+            "importance": 0.2
+        },
+        {
+            "id": "원화",
+            "importance": 0.5
+        },
+        {
+            "id": "이자",
+            "importance": 0.2
+        },
+        {
+            "id": "금융",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "환율",
+                "통화"
+            ],
+            "description": "거래, 대한"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "통화",
+                "수수료"
+            ],
+            "description": "그러, 활용"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "달러",
+                "원화"
+            ],
+            "description": "두고, 변동"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "통화",
+                "수수료"
+            ],
+            "description": "환전, 공급"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "달러",
+                "수수료"
+            ],
+            "description": "대한, 되ㄴ다"
+        },
+        {
+            "id": "edge6",
+            "nodes": [
+                "수수료",
+                "이자"
+            ],
+            "description": "제공, 환전"
+        },
+        {
+            "id": "edge7",
+            "nodes": [
+                "환율",
+                "원화"
+            ],
+            "description": "변동, 하락"
+        },
+        {
+            "id": "edge8",
+            "nodes": [
+                "통화",
+                "원화"
+            ],
+            "description": "결제"
+        },
+        {
+            "id": "edge9",
+            "nodes": [
+                "수수료",
+                "원화"
+            ],
+            "description": "결제, 환전"
+        },
+        {
+            "id": "edge10",
+            "nodes": [
+                "수수료",
+                "이자"
+            ],
+            "description": "남았다면, 받고"
+        },
+        {
+            "id": "edge11",
+            "nodes": [
+                "환율",
+                "금융"
+            ],
+            "description": "재환전, 환전"
+        },
+        {
+            "id": "edge12",
+            "nodes": [
+                "통화",
+                "원화"
+            ],
+            "description": "결제, 재환전"
+        }
+    ]
+}

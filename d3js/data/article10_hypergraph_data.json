@@ -1,0 +1,94 @@
+{
+    "nodes": [
+        {
+            "id": "국채",
+            "importance": 0.1
+        },
+        {
+            "id": "수익률",
+            "importance": 0.1
+        },
+        {
+            "id": "통화",
+            "importance": 0.1
+        },
+        {
+            "id": "루블화",
+            "importance": 0.1
+        },
+        {
+            "id": "달러",
+            "importance": 0.1
+        },
+        {
+            "id": "망",
+            "importance": 0.1
+        },
+        {
+            "id": "코인",
+            "importance": 0.01
+        },
+        {
+            "id": "비트코인",
+            "importance": 0.01
+        },
+        {
+            "id": "자산",
+            "importance": 0.1
+        },
+        {
+            "id": "거래소",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "국채",
+                "수익률"
+            ],
+            "description": ""
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "통화",
+                "루블화"
+            ],
+            "description": "떨어지었다"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "달러",
+                "망"
+            ],
+            "description": "뚫으면, 상승"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "코인",
+                "비트코인"
+            ],
+            "description": "쌓아, 두"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "코인",
+                "비트코인"
+            ],
+            "description": "보유, 있으며"
+        },
+        {
+            "id": "edge6",
+            "nodes": [
+                "자산",
+                "거래소"
+            ],
+            "description": "거래"
+        }
+    ]
+}
