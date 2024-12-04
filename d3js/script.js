@@ -353,12 +353,6 @@ d3.json("hypergraph_data.json").then(function (data) {
             });
     });
 
-    // Edge descriptions object
-    const edgeDescriptions = {
-        '1': 'This edge represents a key relationship between connected nodes, highlighting their interconnectedness.',
-        '2': 'A complex interconnection showcasing the multifaceted nature of the nodes involved.',
-        '3': 'An important structural connection that bridges multiple nodes in the hypergraph.'
-    };
 
     // Modify the existing code to include edge descriptions
     function createEdgeInfoTooltip(event, d) {

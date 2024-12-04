@@ -2,8 +2,7 @@
     const svg = d3.select('#network-svg');
     const width = +svg.attr('width');
     const height = +svg.attr('height');
-    // const g = svg.append('g'); 
-    
+
     let graphData = null;
     let activeArticle = null;
 
@@ -82,20 +81,36 @@
         // Clear previous graph
         svg.selectAll('*').remove();
 
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
         // Create force simulation with improved containment
         const simulation = d3.forceSimulation(graphData.nodes)
-            .force('link', d3.forceLink(graphData.edges).id(d => d.id))
-            .force('charge', d3.forceManyBody().strength(-50))
-            .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('collide', d3.forceCollide(15))
-            // Add boundary force to keep nodes within SVG
-            .force('boundary', () => {
-                graphData.nodes.forEach(node => {
-                    const padding = 5; // Keep nodes slightly inside the SVG
-                    node.x = Math.max(padding, Math.min(width - padding, node.x));
-                    node.y = Math.max(padding, Math.min(height - padding, node.y));
-                });
+        .force('link', d3.forceLink(graphData.edges).id(d => d.id))
+        .force('charge', d3.forceManyBody().strength(-100))  // Slightly stronger repulsion for full screen
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('collide', d3.forceCollide(20))  // Larger collision radius
+        // Add boundary force to keep nodes within SVG
+        .force('boundary', () => {
+            graphData.nodes.forEach(node => {
+                const padding = 50; // Increased padding for full screen
+                node.x = Math.max(padding, Math.min(width - padding, node.x));
+                node.y = Math.max(padding, Math.min(height - padding, node.y));
             });
+        });
+
+        // Add window resize event listener
+        window.addEventListener('resize', () => {
+            // Resize SVG to new window dimensions
+            svg.attr('width', window.innerWidth)
+            .attr('height', window.innerHeight);
+            
+            // Re-render the graph
+            if (graphData) {
+                renderGraph();
+            }
+        });
+
 
         // Create edges
         const link = svg.append('g')
@@ -171,15 +186,17 @@
                 .attr('y', d => d.y);
         });
     }
+    // let z = d3.zoomIdentity;
 
-    const zoom = d3.zoom()
-        .scaleExtent([0.1, 10])
-        .on('zoom', (event) => {
-            svg.attr('transform', event.transform);
-        });
+    // const zoom = d3.zoom()
+    //     .scaleExtent([0.5, 5])
+    //     .on('zoom', (event) => {
+    //         svg.attr('transform', event.transform);
+    //     });
 
-    // 줌 동작을 SVG에 바인딩
-    svg.call(zoom);
+    // // 줌 동작을 SVG에 바인딩
+    // svg.call(zoom);
+    
 
     // Create article tabs
     function createArticleTabs() {

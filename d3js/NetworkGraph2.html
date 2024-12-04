@@ -13,11 +13,14 @@
             <svg id="network-svg" width="800" height="600"></svg>
         </div>
         <div id="article-tabs" class="w-1/4 p-4">
-            <div class="bg-white shadow-md rounded-lg">
+            
+            <div class="sidebar bg-white shadow-md rounded-lg">
+                <div class="text-center font-bold text-xl mb-4" style="display: flex; justify-content: center; align-items: center;">FINWISE</div>
                 <div class="p-4">
                     <button id="run-script1" class="w-full mb-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="runScript1()">
                         기사 그래프
                     </button>
+                    <div id="edge-container"></div>
                     <button id="run-script2" class="w-full mb-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" onclick="runScript2()">
                         개인화 그래프
                     </button>
@@ -34,13 +37,14 @@
             if (!script1Executed) {
                 clearGraph();
                 const script = document.createElement('script');
-                script.src = 'script.js';
+                script.src = 'script3d.js';
                 script.onload = () => {
                     script1Executed = true;
                     script2Executed = false;
                     document.getElementById('run-script1').disabled = true;
                     document.getElementById('run-script2').disabled = false;
                     removeArticleList();
+                    createEdgeList();
                 };
                 script.onerror = () => {
                     console.error('script.js 로드 실패');
@@ -67,12 +71,18 @@
                     }
                     
                     createArticleList();
+                    removeEdgeList();
                 };
                 script.onerror = () => {
                     console.error('network-graph.js 로드 실패');
                 };
                 script.setAttribute('data-custom', 'dynamic');
                 document.body.appendChild(script);
+                const zoom = d3.zoom()
+                    .scaleExtent([0.1, 10])
+                    .on('zoom', (event) => {
+                        svg.attr('transform', event.transform);
+                    });
             }
         }
 
@@ -82,11 +92,24 @@
             dynamicScripts.forEach(script => script.remove());
         }
 
+        function createEdgeList() {
+            const edgeContainer = document.getElementById('edge-container');
+            const edgeList = document.createElement('div');
+            edgeList.id = 'edge-list';
+            edgeContainer.appendChild(edgeList);
+        }
+
+        function removeEdgeList() {
+            const edgeList = document.getElementById('edge-list');
+            if (edgeList) {
+                edgeList.remove();
+            }
+        }
+
         function createArticleList() {
             const articleContainer = document.getElementById('article-container');
             const articleList = document.createElement('div');
             articleList.id = 'article-list';
-            // articleList.innerHTML = '<p>Article list will be displayed here...</p>';
             articleContainer.appendChild(articleList);
         }
 
