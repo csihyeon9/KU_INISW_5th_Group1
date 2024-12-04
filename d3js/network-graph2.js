@@ -76,6 +76,48 @@
         }
     }
 
+    // 포스 시뮬레이션 이후에 줌과 드래그 설정
+    function setupZoomAndDrag(simulation) {
+        // 모든 그래프 요소를 포함할 컨테이너 그룹 생성
+        const g = svg.append("g")
+            .attr("class", "graph-container");
+
+        // 줌 비헤이비어 설정
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10])  // 줌 범위 조정
+            .on("zoom", (event) => {
+                // 그래프 컨테이너에 직접 변환 적용
+                g.attr("transform", event.transform);
+            });
+
+        // SVG에 줌 이벤트 바인딩
+        svg.call(zoom)
+        .call(zoom.transform, d3.zoomIdentity);  // 초기 변환 설정
+
+        // 드래그 비헤이비어 설정 (노드용)
+        const drag = d3.drag()
+            .on("start", (event, d) => {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+                
+                // 드래그 시작 시 이벤트 전파 중지
+                event.sourceEvent.stopPropagation();
+            })
+            .on("drag", (event, d) => {
+                d.fx = event.x;
+                d.fy = event.y;
+            })
+            .on("end", (event, d) => {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            });
+
+        // 노드에 드래그 적용
+        node.call(drag);
+    }
+
     // Render network graph
     function renderGraph() {
         // Clear previous graph
@@ -84,10 +126,12 @@
         const width = window.innerWidth;
         const height = window.innerHeight;
 
+        svg.attr('width', width).attr('height', height);
+
         // Create force simulation with improved containment
         const simulation = d3.forceSimulation(graphData.nodes)
         .force('link', d3.forceLink(graphData.edges).id(d => d.id))
-        .force('charge', d3.forceManyBody().strength(-100))  // Slightly stronger repulsion for full screen
+        .force('charge', d3.forceManyBody().strength(-10))  // Slightly stronger repulsion for full screen
         .force('center', d3.forceCenter(width / 2, height / 2))
         .force('collide', d3.forceCollide(20))  // Larger collision radius
         // Add boundary force to keep nodes within SVG
@@ -128,7 +172,15 @@
             .data(graphData.nodes)
             .enter().append('circle')
             .attr('r', d => 5 + (d.importance * 10))
-            .attr('fill', d => d.articles.length > 1 ? '#FF6B6B' : '#4ECDC4')
+            .attr('fill', d => {
+                if (d.articles.length > 5) {
+                    return '#6A8734'; // For highly connected nodes
+                } else if (d.articles.length > 2) {
+                    return '#698532'; // For moderately connected nodes
+                } else {
+                    return '#555555'; // For less connected nodes
+                }
+            })
             .style('opacity', d => 
                 activeArticle 
                     ? d.articles.includes(activeArticle) 
@@ -187,15 +239,48 @@
         });
     }
     // let z = d3.zoomIdentity;
+    
 
-    // const zoom = d3.zoom()
-    //     .scaleExtent([0.5, 5])
-    //     .on('zoom', (event) => {
-    //         svg.attr('transform', event.transform);
-    //     });
+        const g = svg.append("g")
+        .attr("cursor", "grab")
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+        
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+            }
+            
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y; 
 
-    // // 줌 동작을 SVG에 바인딩
-    // svg.call(zoom);
+            }
+            
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+            }
+            
+        
+        const zoom = d3.zoom()
+            .extent([[0, 0], [width, height]])
+            .scaleExtent([1, 8])
+            .on('zoom', (event) => {
+                svg.attr('transform', event.transform);
+            });
+
+        function zoomed({transform}) {
+                g.attr("transform", transform);
+            }   
+
+        // // 줌 동작을 SVG에 바인딩
+        svg.call(zoom)
+            .call(zoom.transform, d3.zoomIdentity); 
     
 
     // Create article tabs
@@ -227,5 +312,8 @@
             });
     }
 
+      
+
     // Initial load
+
     loadGraphData();
