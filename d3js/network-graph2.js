@@ -287,22 +287,31 @@
     function createArticleTabs() {
         const articleList = d3.select('#article-list');
         
-        // Clear existing tabs
+        // Clear existing elements
         articleList.selectAll('*').remove();
         
+        // Create search input inside article-list
+        // const searchContainer = articleList.append('div')
+        //     .attr('class', 'w-full mb-2');
+    
+        const searchInput = articleList.append('input')
+            .attr('type', 'text')
+            .attr('placeholder', 'Search articles...')
+            .attr('class', 'search w-full mb-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300')
+            
         // Create buttons for each article
-        articleList.selectAll('button')
+        const articleButtons = articleList.selectAll('button.article-btn')
             .data(graphData.articles)
             .enter()
             .append('button')
+            .attr('class', ' w-full mb-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300')
             .text(d => d)
-            .attr('class', 'w-full mb-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300')
             .on('click', (event, article) => {
                 activeArticle = article;
                 renderGraph();
             });
-    
-        // View All button - added at the end with a distinct style
+        
+        // View All button
         articleList.append('button')
             .text('View All')
             .attr('class', 'w-full mb-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600')
@@ -310,6 +319,19 @@
                 activeArticle = null;
                 renderGraph();
             });
+        
+        // Add event listener for search input
+        searchInput.on('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            // Hide/show buttons based on search term
+            articleList.selectAll('button.article-btn')
+                .style('display', function(d) {
+                    const articleText = d.toLowerCase();
+                    return (searchTerm === '' || articleText.includes(searchTerm)) ? 'block' : 'none';
+                });
+        });
+
     }
 
       

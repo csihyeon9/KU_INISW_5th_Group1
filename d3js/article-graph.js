@@ -67,7 +67,7 @@ d3.json("hypergraph_data.json").then(function (data) {
             // Create description panel
             const descriptionPanel = svg.append("g")
                 .attr("class", "edge-description-panel")
-                .attr("transform", `translate(${width - 300}, ${height - 150})`);
+                .attr("transform", `translate(${width /2}, ${height})`);
             
             descriptionPanel.append("rect")
                 .attr("width", 250)
