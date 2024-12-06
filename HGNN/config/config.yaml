@@ -1,0 +1,21 @@
+data:
+  pairwise_pmi_path: "data/pairwise_pmi.json"
+  verb_single_keyword_pmi_path: "data/verb_single_keyword_pmi.json"
+  raw_data_path: "data/final_dataset2.json"
+  processed_data_path: "data/processed_data/hgnn_input.pt"
+
+model:
+  in_features: 100
+  hidden_features: 64
+  out_features: 12
+  dropout: 0.5
+
+training:
+  lr: 0.001
+  weight_decay: 0.0001
+  epochs: 200
+  batch_size: 64
+
+visualization:
+  save_dir: "results/models"
+  style: "whitegrid"
