@@ -133,7 +133,11 @@ function renderGraph() {
         .selectAll('circle')
         .data(graphData.nodes)
         .enter().append('circle')
-        .attr('r', d => 5 + (d.importance * 10))
+        .attr('r', d => {
+            const baseRadius = 5 + (d.importance * 10);
+            const articleContribution = d.articles.length * 1.2; // 각 파일 출현 횟수에 따라 크기 증가
+            return baseRadius + articleContribution;
+        })
         .attr('fill', d => {
             if (d.articles.length > 5) {
                 return '#6A8734'; // For highly connected nodes
@@ -226,14 +230,14 @@ function createArticleTabs() {
     const searchInput = articleList.append('input')
         .attr('type', 'text')
         .attr('placeholder', 'Search articles...')
-        .attr('class', 'search w-full mb-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300')
+        .attr('class', 'search mb-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300')
         
     // Create buttons for each article
     const articleButtons = articleList.selectAll('button.article-btn')
         .data(graphData.articles)
         .enter()
         .append('button')
-        .attr('class', ' w-full mb-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300')
+        .attr('class', ' article-btn w-full mb-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300')
         .text(d => d)
         .on('click', (event, article) => {
             activeArticle = article;

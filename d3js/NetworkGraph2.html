@@ -10,10 +10,9 @@
 <body class="bg-gray-100">
     <div class="container mx-auto flex">
         <div id="graph-container" class="w-3/4">
-            <svg id="network-svg" width="800" height="600"></svg>
+            <svg id="network-svg" ></svg>
         </div>
-        <div id="article-tabs" class="w-1/4 p-4">
-            
+        <div id="article-tabs">
             <div class="sidebar bg-white shadow-md rounded-lg">
                 <div class="text-center font-bold text-xl mb-4" style="display: flex; justify-content: center; align-items: center;">FINWISE</div>
                 <div class="p-4">
@@ -87,9 +86,21 @@
         }
 
         function clearGraph() {
-            d3.select('#network-svg').selectAll('*').remove();
+            // SVG 내용 제거
+            d3.select('#network-svg')
+                .attr('transform', null)
+                .selectAll('*')
+                .remove();
+
+            // 기존 동적 스크립트 제거
             const dynamicScripts = document.querySelectorAll('script[data-custom="dynamic"]');
-            dynamicScripts.forEach(script => script.remove());
+            dynamicScripts.forEach(script => {
+                script.remove();
+            });
+
+            // 그래프 관련 상태 초기화
+            script1Executed = false;
+            script2Executed = false;
         }
 
         function createEdgeList() {
