@@ -42,13 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         if (request.action === "analyzeText") {
+            const analysisData = request.type === "url" 
+                ? { url: request.url }
+                : { text: request.text };
+
+            handleAnalysis(analysisData);
             sendResponse({ received: true });
-            handleAnalysis(request.text);
             return false;
         }
     });
 
-    async function handleAnalysis(text) {
+    async function handleAnalysis(analysisData) {
         try {
             contentDiv.classList.add('loading-active');
             loadingDiv.style.display = 'block';
@@ -59,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text: text })
+                body: JSON.stringify(analysisData)
             });
 
             if (!response.ok) {
