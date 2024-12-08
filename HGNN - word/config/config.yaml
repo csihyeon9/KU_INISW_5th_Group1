@@ -1,0 +1,21 @@
+data:
+  pairwise_pmi_path: "data/pairwise_pmi_values3.json"
+  raw_data_path: "data/final_dataset3.json"  # 경로 변경
+  processed_data_path: "data/processed_data/hgnn_data2.pt"
+model:
+  in_features: 100
+  hidden_features: 64
+  out_features: 13
+  dropout: 0.3
+training:
+  lr: 0.0001
+  weight_decay: 0.0001
+  epochs: 500
+  batch_size: 32
+  save_dir: "results/models"
+  checkpoint_interval: 10
+visualization:
+  save_dir: "results/plots"
+  style: "whitegrid"
+  metrics:
+    eval_interval: 10
