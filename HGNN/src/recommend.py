@@ -1,3 +1,5 @@
+# 2단계. 추천 모듈
+
 import torch
 import torch.nn.functional as F
 from scipy.spatial.distance import cosine
