@@ -15,7 +15,7 @@
         `;
 
         const button = document.createElement('button');
-        button.textContent = '기사 분석';
+        button.innerHTML = '기사<br>분석';
         button.style.cssText = `
             padding: 10px; /* 패딩을 조정하여 버튼 크기를 조절 */
             background-color: #32CD32;

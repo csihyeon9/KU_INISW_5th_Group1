@@ -202,37 +202,71 @@ document.addEventListener('DOMContentLoaded', () => {
                     <svg></svg>
                 </div>
                 <div class="definitions-section">
-                    <h3>키워드 정의</h3>
-                    ${Object.entries(data.definitions).map(([term, definition]) => `
-                        <div class="definition-item">
-                            <div class="definition-term">${term}</div>
-                            <div class="definition-description">${definition || '정의를 찾을 수 없습니다.'}</div>
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="recommendation-section">
-                    <h3>추천 키워드와 기사를 확인해보세요.</h3>
-                    ${data.recommendations.map(rec => `
-                        <div class="recommendation-item">
-                            <h4>${rec.keyword} <span class="similarity">(유사도: ${(rec.similarity * 100).toFixed(2)}%)</span></h4>
-                            ${rec.articles.length > 0 ? `
-                                <ul class="article-list">
-                                    ${rec.articles.map(article => `
-                                        <li class="article-item">
-                                            <strong>${article.title}</strong><br>
-                                            <small>URL: ${article.url}</small><br>
-                                            <small>날짜: ${article.date}</small><br>
-                                            <small>키워드: ${article.keywords.join(', ')}</small>
-                                        </li>
-                                    `).join('')}
-                                </ul>
-                            ` : '<p>관련 기사가 없습니다.</p>'}
-                        </div>
-                    `).join('')}
+                    <h3>경제 용어를 확인해보세요.</h3>
+                    ${Object.entries(data.definitions).map(([term, definition]) => {
+                        const maxLength = 200;
+                        const needsTruncation = definition && definition.length > maxLength;
+                        const truncatedText = needsTruncation ? 
+                            definition.slice(0, maxLength) + '...' : 
+                            definition;
+
+                            return `
+                            <div class="definition-item" data-full-text="${definition ? definition.replace(/"/g, '&quot;') : ''}">
+                                <div class="definition-header">
+                                    <div class="definition-term">${term}</div>
+                                    ${needsTruncation ? `
+                                        <button class="toggle-definition-btn">
+                                            <img src="images/down.png" alt="더 보기" class="toggle-icon">
+                                        </button>
+                                    ` : ''}
+                                </div>
+                                <div class="definition-description">
+                                    <div class="definition-content">
+                                        ${truncatedText ? 
+                                            truncatedText
+                                                .replace(/\\r\\n/g, '<br>')
+                                                .replace(/\r\n/g, '<br>')
+                                                .replace(/\\n/g, '<br>')
+                                                .replace(/\n/g, '<br>') 
+                                            : '정의를 찾을 수 없습니다.'
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
             `;
+
+            const addDefinitionToggleListeners = () => {
+                const processBreaks = (text) => text
+                    .replace(/\\r\\n/g, '<br>')
+                    .replace(/\r\n/g, '<br>')
+                    .replace(/\\n/g, '<br>')
+                    .replace(/\n/g, '<br>');
+            
+                document.querySelectorAll('.toggle-definition-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const definitionItem = this.closest('.definition-item');
+                        const content = definitionItem.querySelector('.definition-content');
+                        const fullText = definitionItem.dataset.fullText;
+                        const img = this.querySelector('img');
+                        
+                        if (img.alt === '더 보기') {
+                            content.innerHTML = processBreaks(fullText);
+                            img.src = 'images/up.png';
+                            img.alt = '접기';
+                        } else {
+                            content.innerHTML = processBreaks(fullText.slice(0, 200) + '...');
+                            img.src = 'images/down.png';
+                            img.alt = '더 보기';
+                        }
+                    });
+                });
+            };
             
             contentDiv.innerHTML = analysisHTML;
+            addDefinitionToggleListeners();
 
             const graphContainer = document.getElementById('graph-container');
             currentResizeObserver.observe(graphContainer);
