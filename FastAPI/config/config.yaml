@@ -1,0 +1,39 @@
+# config/config.yaml
+# Data configuration
+data:
+  unique_keywords_path: "data/unique_keywords.json"
+  news_data_path: "data/news_raw_data.json"
+  processed_data_path: "data/processed_data.json"
+  split_ratio:  # Added
+    train: 0.7
+    val: 0.15
+    test: 0.15
+
+# Model configuration
+model:
+  hidden_dim: 64
+  num_layers: 3
+  dropout: 0.3
+  use_attention: true
+
+# Training configuration
+training:
+  num_epochs: 100
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  save_dir: "results/models"
+  checkpoint_interval: 10
+
+# Recommendation configuration
+recommendation:
+  top_k: 5
+  min_similarity: 0.3
+
+# Visualization configuration  # Added
+visualization:
+  save_dir: "results/plots"
+  style: "whitegrid"  # seaborn style
+  metrics:
+    k_values: [5, 10, 20]  # For Precision@K and Recall@K
+    eval_interval: 10  # Evaluate every N epochs
