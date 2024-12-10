@@ -9,13 +9,24 @@
 </head>
 <body>
     <header class="header">
-        <h1>Fin￦i$E</h1>
-        <button id="resetButton" class="reset-button" title="초기화">
-            <img src="images/refresh.png" alt="초기화">
-        </button>
+        <div class="header-buttons">
+            <button class="header-button" id="analysisButton">기사 그래프</button>
+            <button class="header-button" id="personalButton">개인 그래프</button>
+        </div>
     </header>
+    <div class="button-container">
+        <div class="button-group">
+            <button id="saveButton" class="save-button" title="저장">
+                <img src="images/bookmark.png" alt="저장">
+            </button>
+            <button id="resetButton" class="reset-button" title="초기화">
+                <img src="images/refresh.png" alt="초기화">
+            </button>
+        </div>
+        <div id="articleTitle" class="article-title"></div>
+    </div>
     <div class="container">
-        <div id="content">텍스트를 드래그하면 나타나는 아이콘을 클릭해주세요.</div>
+        <div id="content">기사 분석 아이콘을 클릭해주세요.</div>
         <div id="loading" class="loading"></div>
     </div>
     <footer class="footer">
