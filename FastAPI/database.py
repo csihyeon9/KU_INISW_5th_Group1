@@ -59,7 +59,7 @@ class Database:
             "url": article_data["url"],
             "content": article_data["content"],
             "hypergraph_data": article_data["hypergraph_data"],
-            "recommendations": article_data["recommendations"],
+            # "recommendations": article_data["recommendations"],
             "created_at": datetime.datetime.utcnow()
         }
         result = await cls.article_collection.insert_one(article)

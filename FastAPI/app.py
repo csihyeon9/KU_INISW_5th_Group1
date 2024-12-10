@@ -78,7 +78,7 @@ async def main(input: InputText):
 
         return JSONResponse({
             "hypergraph_data": result,
-            "recommendations": recommendations,
+            # "recommendations": recommendations,
             "response_time": datetime.datetime.now(local_tz).isoformat(),
             "title": title,
             "date": date,
