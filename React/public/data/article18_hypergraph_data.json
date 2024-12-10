@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "금융",
+            "importance": 0.1
+        },
+        {
+            "id": "대출",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "금융",
+                "대출"
+            ],
+            "description": "대출, 오"
+        }
+    ]
+}

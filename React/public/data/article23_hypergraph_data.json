@@ -1,0 +1,66 @@
+{
+    "nodes": [
+        {
+            "id": "비상계엄",
+            "importance": 0.1
+        },
+        {
+            "id": "탄핵 정국",
+            "importance": 0.1
+        },
+        {
+            "id": "망",
+            "importance": 0.1
+        },
+        {
+            "id": "여당",
+            "importance": 0.1
+        },
+        {
+            "id": "달러",
+            "importance": 0.01
+        },
+        {
+            "id": "통화",
+            "importance": 0.1
+        },
+        {
+            "id": "환율",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "비상계엄",
+                "탄핵 정국"
+            ],
+            "description": "흘르어, 가면서"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "망",
+                "여당"
+            ],
+            "description": "채택"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "달러",
+                "통화"
+            ],
+            "description": "나타내, 기록"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "달러",
+                "환율"
+            ],
+            "description": "내리, 나타내었다"
+        }
+    ]
+}

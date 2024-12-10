@@ -1,0 +1,46 @@
+{
+    "nodes": [
+        {
+            "id": "네트워크",
+            "importance": 0.1
+        },
+        {
+            "id": "미국",
+            "importance": 0.001
+        },
+        {
+            "id": "정부",
+            "importance": 0.1
+        },
+        {
+            "id": "이자",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "네트워크",
+                "미국"
+            ],
+            "description": "있도록, 하ㄴ다면"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "미국",
+                "정부"
+            ],
+            "description": "협력, 계획"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "미국",
+                "이자"
+            ],
+            "description": "잇어, 가겠다"
+        }
+    ]
+}

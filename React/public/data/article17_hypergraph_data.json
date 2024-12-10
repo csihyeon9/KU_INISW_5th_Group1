@@ -1,0 +1,62 @@
+{
+    "nodes": [
+        {
+            "id": "금융",
+            "importance": 0.0001
+        },
+        {
+            "id": "대출",
+            "importance": 0.001
+        },
+        {
+            "id": "기업금융",
+            "importance": 0.01
+        },
+        {
+            "id": "핵심성과지표",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "금융",
+                "대출"
+            ],
+            "description": "대출, 기울이"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "금융",
+                "기업금융"
+            ],
+            "description": "하더라도, 오았다"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "금융",
+                "기업금융"
+            ],
+            "description": "줄이"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "대출",
+                "핵심성과지표"
+            ],
+            "description": "줄이었고, 평가"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "금융",
+                "대출"
+            ],
+            "description": "어려워지, 나오ㄴ다"
+        }
+    ]
+}

@@ -1,0 +1,122 @@
+{
+    "nodes": [
+        {
+            "id": "환율",
+            "importance": 0.02
+        },
+        {
+            "id": "달러화",
+            "importance": 0.03
+        },
+        {
+            "id": "원화",
+            "importance": 0.01
+        },
+        {
+            "id": "국채금리",
+            "importance": 0.02
+        },
+        {
+            "id": "통화",
+            "importance": 0.01
+        },
+        {
+            "id": "금리인하",
+            "importance": 0.015
+        },
+        {
+            "id": "FOMC",
+            "importance": 0.02
+        },
+        {
+            "id": "미국 대선",
+            "importance": 0.03
+        },
+        {
+            "id": "경제정책",
+            "importance": 0.02
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "환율",
+                "달러화"
+            ],
+            "description": "미국 대선 결과에 따른 변동"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "달러화",
+                "국채금리"
+            ],
+            "description": "국채금리 안정 여부에 따른 달러화 약세"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "환율",
+                "원화"
+            ],
+            "description": "원·달러 환율의 상승과 하락"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "국채금리",
+                "금리인하"
+            ],
+            "description": "금리인하가 국채금리 안정에 미치는 영향"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "FOMC",
+                "금리인하"
+            ],
+            "description": "FOMC 회의에서 금리 인하 가능성"
+        },
+        {
+            "id": "edge6",
+            "nodes": [
+                "미국 대선",
+                "환율"
+            ],
+            "description": "대선 결과에 따른 환율 변화"
+        },
+        {
+            "id": "edge7",
+            "nodes": [
+                "미국 대선",
+                "경제정책"
+            ],
+            "description": "대선 결과에 따라 경제정책이 달라짐"
+        },
+        {
+            "id": "edge8",
+            "nodes": [
+                "경제정책",
+                "달러화"
+            ],
+            "description": "경제정책 변화가 달러화 강세/약세에 미치는 영향"
+        },
+        {
+            "id": "edge9",
+            "nodes": [
+                "FOMC",
+                "환율"
+            ],
+            "description": "FOMC의 결정이 환율 변동에 미치는 영향"
+        },
+        {
+            "id": "edge10",
+            "nodes": [
+                "통화",
+                "환율"
+            ],
+            "description": "동사1"
+        }
+    ]
+}

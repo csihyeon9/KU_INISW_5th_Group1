@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+.overflow-y-auto {
+  scrollbar-width: thick;  /* For Firefox */
+  scrollbar-color: #888 #f1f1f1;  /* For Firefox */
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 600px;  /* Width of the scrollbar */
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;  /* Color of the tracking area */
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #888;  /* Color of the scroll thumb */
+  border-radius: 200px;  /* Roundness of the scroll thumb */
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #555;  /* Color of the scroll thumb on hover */
+}

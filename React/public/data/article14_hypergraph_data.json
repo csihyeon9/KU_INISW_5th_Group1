@@ -1,0 +1,34 @@
+{
+    "nodes": [
+        {
+            "id": "저성장",
+            "importance": 0.1
+        },
+        {
+            "id": "정부",
+            "importance": 0.01
+        },
+        {
+            "id": "정치 리스크",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "저성장",
+                "정부"
+            ],
+            "description": "하라고, 사라지"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "정부",
+                "정치 리스크"
+            ],
+            "description": "일어나, 서어"
+        }
+    ]
+}

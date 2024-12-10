@@ -1,0 +1,74 @@
+{
+    "nodes": [
+        {
+            "id": "금융",
+            "importance": 0.1
+        },
+        {
+            "id": "비상계엄",
+            "importance": 0.1
+        },
+        {
+            "id": "달러",
+            "importance": 0.01
+        },
+        {
+            "id": "환율",
+            "importance": 0.001
+        },
+        {
+            "id": "유동성",
+            "importance": 0.1
+        },
+        {
+            "id": "유동성 공급",
+            "importance": 0.1
+        },
+        {
+            "id": "인터넷전문은행",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "금융",
+                "비상계엄"
+            ],
+            "description": ""
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "달러",
+                "환율"
+            ],
+            "description": "가면서"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "유동성",
+                "유동성 공급"
+            ],
+            "description": "오가, 알리어"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "달러",
+                "환율"
+            ],
+            "description": "몰리, 된다"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "인터넷전문은행",
+                "환율"
+            ],
+            "description": "환전"
+        }
+    ]
+}

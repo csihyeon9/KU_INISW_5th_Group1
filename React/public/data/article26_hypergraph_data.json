@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "정부",
+            "importance": 0.1
+        },
+        {
+            "id": "폐지",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "정부",
+                "폐지"
+            ],
+            "description": "지나, 앞서어"
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+{
+    "nodes": [
+        {
+            "id": "금융",
+            "importance": 0.01
+        },
+        {
+            "id": "비상계엄",
+            "importance": 0.1
+        },
+        {
+            "id": "달러",
+            "importance": 0.01
+        },
+        {
+            "id": "환율",
+            "importance": 0.01
+        },
+        {
+            "id": "외환",
+            "importance": 0.1
+        },
+        {
+            "id": "정부",
+            "importance": 0.1
+        },
+        {
+            "id": "ETF",
+            "importance": 0.1
+        },
+        {
+            "id": "TF",
+            "importance": 0.1
+        },
+        {
+            "id": "수출",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "금융",
+                "비상계엄"
+            ],
+            "description": "전하어, 지면서"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "달러",
+                "환율"
+            ],
+            "description": "뚫었다가, 조정"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "달러",
+                "환율"
+            ],
+            "description": "치솟, 찍었던"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "외환",
+                "정부"
+            ],
+            "description": "지나"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "ETF",
+                "TF"
+            ],
+            "description": "줄이었다, 관하"
+        },
+        {
+            "id": "edge6",
+            "nodes": [
+                "금융",
+                "수출"
+            ],
+            "description": "세우어, 거래"
+        }
+    ]
+}

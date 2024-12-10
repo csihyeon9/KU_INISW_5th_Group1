@@ -1,0 +1,66 @@
+{
+    "nodes": [
+        {
+            "id": "유동성",
+            "importance": 0.01
+        },
+        {
+            "id": "유동성 공급",
+            "importance": 0.1
+        },
+        {
+            "id": "대출",
+            "importance": 0.1
+        },
+        {
+            "id": "망",
+            "importance": 0.1
+        },
+        {
+            "id": "정부",
+            "importance": 0.1
+        },
+        {
+            "id": "금리",
+            "importance": 0.1
+        },
+        {
+            "id": "채권",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "유동성",
+                "유동성 공급"
+            ],
+            "description": "위하어, 공급"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "대출",
+                "유동성"
+            ],
+            "description": "대출, 하게"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "망",
+                "정부"
+            ],
+            "description": "따르아, 이르"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "금리",
+                "채권"
+            ],
+            "description": ""
+        }
+    ]
+}

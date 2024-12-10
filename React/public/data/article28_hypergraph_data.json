@@ -1,0 +1,94 @@
+{
+    "nodes": [
+        {
+            "id": "미국",
+            "importance": 0.0001
+        },
+        {
+            "id": "중앙은행",
+            "importance": 0.1
+        },
+        {
+            "id": "투자",
+            "importance": 0.1
+        },
+        {
+            "id": "달러",
+            "importance": 0.1
+        },
+        {
+            "id": "망",
+            "importance": 0.001
+        },
+        {
+            "id": "전망치",
+            "importance": 0.01
+        },
+        {
+            "id": "AI",
+            "importance": 0.1
+        },
+        {
+            "id": "인공지능",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "미국",
+                "중앙은행"
+            ],
+            "description": "평가, 높이어"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "미국",
+                "투자"
+            ],
+            "description": "투자, 평가"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "달러",
+                "미국"
+            ],
+            "description": "조정, 증가"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "망",
+                "전망치"
+            ],
+            "description": "웃돌, 증가"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "망",
+                "미국"
+            ],
+            "description": "보고, 지나"
+        },
+        {
+            "id": "edge6",
+            "nodes": [
+                "AI",
+                "인공지능"
+            ],
+            "description": "하라고, 부"
+        },
+        {
+            "id": "edge7",
+            "nodes": [
+                "망",
+                "전망치"
+            ],
+            "description": "밑돌"
+        }
+    ]
+}

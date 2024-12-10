@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "금융",
+            "importance": 0.1
+        },
+        {
+            "id": "네트워크",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "금융",
+                "네트워크"
+            ],
+            "description": "있도록, 이루"
+        }
+    ]
+}

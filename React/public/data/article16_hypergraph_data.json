@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "비상계엄",
+            "importance": 0.1
+        },
+        {
+            "id": "원화",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "비상계엄",
+                "원화"
+            ],
+            "description": ""
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "nodes": [
+        {
+            "id": "달러",
+            "importance": 0.001
+        },
+        {
+            "id": "수출",
+            "importance": 0.001
+        },
+        {
+            "id": "네트워크",
+            "importance": 0.01
+        },
+        {
+            "id": "미국",
+            "importance": 0.1
+        },
+        {
+            "id": "무역수지",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "달러",
+                "수출"
+            ],
+            "description": ""
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "달러",
+                "수출"
+            ],
+            "description": "않아도, 회수"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "네트워크",
+                "수출"
+            ],
+            "description": "돕고, 지원"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "네트워크",
+                "미국"
+            ],
+            "description": "위하, 협력"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "달러",
+                "무역수지"
+            ],
+            "description": "가고, 있으며"
+        }
+    ]
+}

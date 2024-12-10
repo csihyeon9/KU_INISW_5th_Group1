@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "금융",
+            "importance": 0.1
+        },
+        {
+            "id": "투자",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "금융",
+                "투자"
+            ],
+            "description": "지어야, 있었기에"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "미국",
+            "importance": 0.1
+        },
+        {
+            "id": "수출",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "미국",
+                "수출"
+            ],
+            "description": ""
+        }
+    ]
+}

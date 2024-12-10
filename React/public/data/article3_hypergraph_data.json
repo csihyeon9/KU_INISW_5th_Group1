@@ -1,0 +1,90 @@
+{
+    "nodes": [
+        {
+            "id": "원·달러 환율",
+            "importance": 0.03
+        },
+        {
+            "id": "달러화",
+            "importance": 0.02
+        },
+        {
+            "id": "미국 대선",
+            "importance": 0.03
+        },
+        {
+            "id": "미국 국채 금리",
+            "importance": 0.02
+        },
+        {
+            "id": "FOMC",
+            "importance": 0.02
+        },
+        {
+            "id": "트럼프 트레이드",
+            "importance": 0.01
+        },
+        {
+            "id": "관세 부과",
+            "importance": 0.015
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "원·달러 환율",
+                "미국 대선"
+            ],
+            "description": "대선 결과가 환율 상승/하락에 미치는 영향"
+        },
+        {
+            "id": "edge2",
+            "nodes": [
+                "미국 대선",
+                "달러화"
+            ],
+            "description": "대선 결과로 인한 달러화 강세"
+        },
+        {
+            "id": "edge3",
+            "nodes": [
+                "달러화",
+                "미국 국채 금리"
+            ],
+            "description": "국채 금리 상승이 달러화 강세에 미치는 영향"
+        },
+        {
+            "id": "edge4",
+            "nodes": [
+                "FOMC",
+                "미국 국채 금리"
+            ],
+            "description": "FOMC 결정이 국채 금리 변동에 미치는 영향"
+        },
+        {
+            "id": "edge5",
+            "nodes": [
+                "트럼프 트레이드",
+                "달러화"
+            ],
+            "description": "트럼프 트레이드 효과의 되돌림이 달러화에 미치는 영향"
+        },
+        {
+            "id": "edge6",
+            "nodes": [
+                "관세 부과",
+                "달러화"
+            ],
+            "description": "관세 부과 우려가 달러화 강세 요인으로 작용"
+        },
+        {
+            "id": "edge7",
+            "nodes": [
+                "원·달러 환율",
+                "FOMC"
+            ],
+            "description": "FOMC 결과가 환율 하락에 미치는 잠재적 영향"
+        }
+    ]
+}

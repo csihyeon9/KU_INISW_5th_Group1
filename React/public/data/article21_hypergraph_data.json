@@ -1,0 +1,22 @@
+{
+    "nodes": [
+        {
+            "id": "순이익",
+            "importance": 0.1
+        },
+        {
+            "id": "지분",
+            "importance": 0.1
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge1",
+            "nodes": [
+                "순이익",
+                "지분"
+            ],
+            "description": "내었는지, 벌어들이"
+        }
+    ]
+}
