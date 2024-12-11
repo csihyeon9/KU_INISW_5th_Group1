@@ -9,8 +9,8 @@ from database import Database
 
 from nlp_processor import NLPProcessor
 from src.give import get_word_definition
-from src.relation_extractor import cleanup
-from recommend import ArticleRecommender
+# from src.relation_extractor import cleanup
+# from recommend import ArticleRecommender
 from src.fetch_content import fetch_content
 
 app = FastAPI()
@@ -28,7 +28,7 @@ app.add_middleware(
 )
 
 nlp_processor = NLPProcessor()
-recommender = ArticleRecommender()
+# recommender = ArticleRecommender()
 
 @app.post("/service")
 async def main(input: InputText):
@@ -73,8 +73,8 @@ async def main(input: InputText):
             print(f"정의 검색 중 오류 발생: {str(e)}")
             definitions = {}  # 오류 발생 시 빈 딕셔너리로 처리
 
-        recommendations = recommender.recommend(cur_unique_keywords)
-        print("\nrecommendations:", recommendations)
+        # recommendations = recommender.recommend(cur_unique_keywords)
+        # print("\nrecommendations:", recommendations)
 
         return JSONResponse({
             "hypergraph_data": result,
@@ -96,7 +96,7 @@ async def startup_db_client():
 @app.on_event("shutdown")
 async def shutdown_event():
     await Database.close_db()
-    cleanup()
+    nlp_processor.cleanup()
 
 @app.post("/save_article")
 async def save_article(article_data: dict):

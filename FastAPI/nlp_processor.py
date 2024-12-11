@@ -1,106 +1,289 @@
-# nlp_processor.py
-import os
+from koalanlp.proc import Tagger
+from koalanlp import API
+from koalanlp.Util import initialize, finalize
+from koalanlp.types import POS
+from collections import Counter, defaultdict
+import kss
+from typing import List, Dict, Tuple, Any
+from keybert import KeyBERT
+from transformers import AutoTokenizer, AutoModel
+from sklearn.feature_extraction.text import TfidfVectorizer
+import torch
+from sentence_transformers import util
 import json
-from typing import List, Dict
-from collections import Counter
 
-from src.file_loader import load_article
-from src.sentence_splitter import split_sentences
-from src.term_extractor import extract_terms
-from src.sentence_filter import filter_sentences_by_term_count
-from src.relation_extractor import extract_verbs, load_custom_verbs, initialize_jvm
+_jvm_initialized = False
 
 
 class NLPProcessor:
     def __init__(self):
-        self.json_dir = "data/json/"
-        self.article_terms_path = os.path.join(self.json_dir, "article_terms.json")
-        self.yes_verbs_path = os.path.join(self.json_dir, "yes_verb.json")
-        self.not_verbs_path = os.path.join(self.json_dir, "not_verb.json")
-        self.verb_mapping_path = os.path.join(self.json_dir, "verb_mapping.json")
+        self.initialize_nlp()
+        self.tokenizer = AutoTokenizer.from_pretrained("upskyy/kf-deberta-multitask")
+        self.model = AutoModel.from_pretrained("upskyy/kf-deberta-multitask").to(
+            "cuda" if torch.cuda.is_available() else "cpu")
+        self.keybert_model = KeyBERT("multi-qa-mpnet-base-cos-v1")
+        self.tfidf_vectorizer = TfidfVectorizer(
+            min_df=1,
+            max_features=1000,
+            token_pattern=r'(?u)\b\w+\b'
+        )
+        self.dictionary_file_path = "dictionary.json"
+        self.dictionary = self.load_dictionary()
+        self.economic_terms_cache = {}
 
-        self.article_terms = self._load_json_list(self.article_terms_path, "terms")
-        self.yes_verbs = self._load_json_list(self.yes_verbs_path, "yes_verbs")
-        self.not_verbs = self._load_json_list(self.not_verbs_path, "not_verbs")
-        self.verb_mapping = self._load_verb_mapping(self.verb_mapping_path)
+    def initialize_nlp(self):
+        global _jvm_initialized
+        if not _jvm_initialized:
+            try:
+                initialize(
+                    java_options="-Xmx4g -Dfile.encoding=UTF-8 --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+                    DAON="LATEST"
+                )
+                _jvm_initialized = True
+            except Exception as e:
+                if "JVM cannot be initialized more than once" not in str(e):
+                    raise e
+        self.tagger = Tagger(API.DAON)
 
-        initialize_jvm()
-        load_custom_verbs(self.yes_verbs_path)
-
-    def _load_json_list(self, json_path: str, key: str) -> List[str]:
+    def load_dictionary(self):
         try:
-            with open(json_path, "r", encoding="utf-8") as file:
-                data = json.load(file)
-            return data.get(key, [])
-        except FileNotFoundError:
-            print(f"File not found: {json_path}")
-            return []
-        except json.JSONDecodeError:
-            print(f"Invalid JSON format: {json_path}")
-            return []
-
-    def _load_verb_mapping(self, json_path: str) -> str:
-        """
-        Load a mapping of verbs for normalization.
-        """
-        try:
-            with open(json_path, "r", encoding="utf-8") as file:
+            with open(self.dictionary_file_path, 'r', encoding='utf-8') as file:
                 return json.load(file)
         except FileNotFoundError:
-            print(f"Mapping file not found: {json_path}")
-            return {}
-        except json.JSONDecodeError:
-            print(f"Invalid JSON format: {json_path}")
             return {}
 
-    def process_text(self, text: str) -> Dict:
-        """
-        텍스트를 분석하여 하이퍼그래프 데이터 구조를 반환합니다.
-        """
-        # 문장 분리 및 용어 추출
-        sentences = split_sentences(text)
+    def is_economic_term(self, term: str) -> bool:
+        if term in self.economic_terms_cache:
+            return self.economic_terms_cache[term]
 
-        sentence_with_terms = [
-            (sentence, extract_terms(sentence, self.article_terms)) for sentence in sentences
-        ]
+        term_cleaned = term.replace(" ", "").lower()
 
-        filtered_sentences = filter_sentences_by_term_count(
-            sentence_with_terms,
-            min_count=2,
-            max_count=2
-        )
+        result = False
+        if term_cleaned in self.dictionary:
+            result = True
+        else:
+            for key in self.dictionary.keys():
+                key_cleaned = key.split("(")[0].replace(" ", "").lower()
+                if key_cleaned == term_cleaned:
+                    result = True
+                    break
+                if "(" in key:
+                    inside_parentheses = key.split("(")[1].rstrip(")").lower()
+                    if any(item.strip() == term_cleaned for item in inside_parentheses.split(",")):
+                        result = True
+                        break
 
-        # 하이퍼그래프 데이터 구조 생성
+        self.economic_terms_cache[term] = result
+        return result
+
+    def extract_verbs_and_nouns(self, sentence: Any) -> Tuple[List[str], List[str]]:
+        analyzed = self.tagger(sentence)
+        verbs = []
+        nouns = []
+        for sent in analyzed:
+            for word in sent:
+                if hasattr(word, 'morphemes'):
+                    base_form = None
+                    endings = []
+                    for morpheme in word.morphemes:
+                        if morpheme.tag in {"VV", "VX"}:
+                            base_form = morpheme.surface
+                        elif morpheme.tag.startswith("EP") or morpheme.tag.startswith("EC") or morpheme.tag.startswith(
+                                "EF"):
+                            endings.append(morpheme.surface)
+                        elif morpheme.tag in {"NNG", "NNP", "NNBC"}:
+                            nouns.append(morpheme.surface)
+                    if base_form:
+                        combined_verb = base_form + "".join(endings)
+                        verbs.append(combined_verb)
+        return list(set(verbs)), list(set(nouns))
+
+    def preprocess_text(self, text: str) -> Dict:
+        # 1. TF-IDF 점수 미리 계산
+        tfidf_matrix = self.tfidf_vectorizer.fit_transform([text])
+        feature_names = self.tfidf_vectorizer.get_feature_names_out()
+        tfidf_scores = dict(zip(feature_names, tfidf_matrix.toarray()[0]))
+
+        # 2. KeyBERT 키워드 미리 추출
+        keybert_results = dict(self.keybert_model.extract_keywords(text, top_n=50))
+
+        # 3. DeBERTa text embedding 미리 계산
+        text_encoding = self.tokenizer(
+            text,
+            padding=True,
+            truncation=True,
+            max_length=512,
+            return_tensors='pt'
+        ).to(self.model.device)
+
+        with torch.no_grad():
+            text_embedding = self.model(**text_encoding).last_hidden_state.mean(dim=1)
+
+        return {
+            'tfidf_scores': tfidf_scores,
+            'keybert_results': keybert_results,
+            'text_embedding': text_embedding
+        }
+
+    def calculate_node_importance(self, preprocessed_data: Dict, node_term: str) -> float:
+        importance_scores = []
+
+        # 1. TF-IDF 점수
+        tfidf_score = preprocessed_data['tfidf_scores'].get(node_term, 0.0)
+        importance_scores.append(tfidf_score)
+
+        # 2. KeyBERT 점수
+        keybert_score = preprocessed_data['keybert_results'].get(node_term, 0.0)
+        importance_scores.append(keybert_score)
+
+        # 3. DeBERTa 유사도
+        try:
+            term_encoding = self.tokenizer(
+                node_term,
+                padding=True,
+                truncation=True,
+                max_length=128,
+                return_tensors='pt'
+            ).to(self.model.device)
+
+            with torch.no_grad():
+                term_embedding = self.model(**term_encoding).last_hidden_state.mean(dim=1)
+                similarity = util.pytorch_cos_sim(
+                    preprocessed_data['text_embedding'],
+                    term_embedding
+                )[0][0].item()
+            importance_scores.append(similarity)
+        except Exception:
+            pass
+
+        # 4. 경제 용어 가중치
+        if self.is_economic_term(node_term):
+            importance_scores = [score * 1.5 for score in importance_scores]
+
+        valid_scores = [score for score in importance_scores if score > 0]
+        if not valid_scores:
+            return 0.0
+
+        final_importance = sum(valid_scores) / len(valid_scores)
+        return round(final_importance, 3)
+
+    def process_text(self, text: str, top_n: int = 5, max_pairs_per_verb: int = 3) -> Dict:
+        # 전처리 데이터 미리 계산
+        preprocessed_data = self.preprocess_text(text)
+
+        sentences = list(kss.split_sentences(text))
+        relationships = []
+        nodes_counter = Counter()
+        verb_counter = Counter()
+        verb_pairs = defaultdict(Counter)
+
+        # 경제 용어 노드 우선 수집
+        economic_terms = set()
+        for sentence in sentences:
+            _, nouns = self.extract_verbs_and_nouns(sentence)
+            for noun in nouns:
+                if self.is_economic_term(noun):
+                    economic_terms.add(noun)
+
+        for sentence in sentences:
+            verbs, nouns = self.extract_verbs_and_nouns(sentence)
+            if len(nouns) < 2:
+                continue
+
+            filtered_verbs = [verb for verb in verbs if len(verb) >= 2]
+            if not filtered_verbs:
+                continue
+
+            # 경제 용어가 포함된 문장 우선 처리
+            has_economic_term = any(term in nouns for term in economic_terms)
+            if has_economic_term:
+                verb_counter.update(filtered_verbs)
+                noun_pairs = [(nouns[i], nouns[j])
+                              for i in range(len(nouns))
+                              for j in range(i + 1, len(nouns))
+                              if nouns[i] in economic_terms or nouns[j] in economic_terms]
+
+                nodes_counter.update(nouns)
+
+                for verb in filtered_verbs:
+                    for noun1, noun2 in noun_pairs:
+                        if noun1 != noun2:
+                            pair = tuple(sorted([noun1, noun2]))
+                            verb_pairs[verb][pair] += 2
+            else:
+                verb_counter.update(filtered_verbs)
+                noun_pairs = [(nouns[i], nouns[j])
+                              for i in range(len(nouns))
+                              for j in range(i + 1, len(nouns))]
+
+                nodes_counter.update(nouns)
+
+                for verb in filtered_verbs:
+                    for noun1, noun2 in noun_pairs:
+                        if noun1 != noun2:
+                            pair = tuple(sorted([noun1, noun2]))
+                            verb_pairs[verb][pair] += 1
+
+        top_verbs = dict(verb_counter.most_common(top_n))
+        filtered_relationships = []
+
+        for verb in top_verbs:
+            pairs = verb_pairs[verb].most_common()
+            economic_pairs = [(pair, count) for pair, count in pairs
+                              if any(self.is_economic_term(term) for term in pair)]
+            normal_pairs = [(pair, count) for pair, count in pairs
+                            if not any(self.is_economic_term(term) for term in pair)]
+
+            selected_pairs = (economic_pairs + normal_pairs)[:max_pairs_per_verb]
+
+            for pair, _ in selected_pairs:
+                filtered_relationships.append({
+                    "verb": verb,
+                    "keywords": list(pair)
+                })
+
         nodes = []
         edges = []
-        all_terms = Counter()
+        used_nodes = set()
 
-        # 모든 용어를 수집하고 빈도수 계산
-        for _, terms in filtered_sentences:
-            all_terms.update(terms)
+        for rel in filtered_relationships:
+            used_nodes.update(rel["keywords"])
 
-        # 노드 생성 (용어별 중요도 계산)
-        for term, freq in all_terms.items():
-            importance = round(10 ** -freq, 10)  # 빈도수가 높을수록 중요도가 낮아짐
+        economic_nodes = set(term for term in used_nodes if self.is_economic_term(term))
+        other_nodes = used_nodes - economic_nodes
+
+        for term in sorted(economic_nodes):
+            importance = self.calculate_node_importance(preprocessed_data, term)
             nodes.append({
                 "id": term,
-                "importance": importance
+                "importance": importance,
+                "is_economic": True
             })
 
-        # 엣지 생성
-        for sentence, terms in filtered_sentences:
-            verbs = extract_verbs(sentence, self.not_verbs, self.yes_verbs, self.verb_mapping)
-            top_verbs = [verb for verb, _ in Counter(verbs).most_common(2)]
+        for term in sorted(other_nodes):
+            importance = self.calculate_node_importance(preprocessed_data, term)
+            nodes.append({
+                "id": term,
+                "importance": importance,
+                "is_economic": False
+            })
 
-            edge_id = f"edge{len(edges) + 1}"
+        for idx, rel in enumerate(filtered_relationships, 1):
             edges.append({
-                "id": edge_id,
-                "nodes": terms,
-                "description": ", ".join(top_verbs) if top_verbs else "관계 없음",
-                "importance": 1.0  # 기본 중요도
+                "id": f"edge{idx}",
+                "nodes": rel["keywords"],
+                "description": rel["verb"],
+                "importance": 1.0
             })
 
         return {
             "nodes": nodes,
             "edges": edges
         }
+
+    @staticmethod
+    def cleanup():
+        global _jvm_initialized
+        if _jvm_initialized:
+            finalize()
+            _jvm_initialized = False
