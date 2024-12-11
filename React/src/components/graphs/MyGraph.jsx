@@ -55,7 +55,8 @@ const MyGraph = ({ updateTrigger }) => {
                             target: targetId,
                             weight: 1,
                             articles: [articleId],
-                            descriptions: [edge.description]
+                            descriptions: [edge.description],
+                            categories: [edge.category]
                         });
                     } else {
                         const existingEdge = combinedEdges.get(edgeKey);
@@ -63,8 +64,8 @@ const MyGraph = ({ updateTrigger }) => {
                         if (!existingEdge.articles.includes(articleId)) {
                             existingEdge.articles.push(articleId);
                         }
-                        if (edge.description && !existingEdge.descriptions.includes(edge.description)) {
-                            existingEdge.descriptions.push(edge.description);
+                        if (edge.category && !existingEdge.categories.includes(edge.category)) {
+                            existingEdge.categories.push(edge.category);
                         }
                     }
 
@@ -164,7 +165,7 @@ const MyGraph = ({ updateTrigger }) => {
                     .style('opacity', 0.9);
                 tooltip.html(`
                     <strong>${d.source.id || d.source} ↔ ${d.target.id || d.target}</strong><br/>
-                    ${d.descriptions.join('<br/>')}
+                    ${d.categories.join('<br/>')}
                 `)
                     .style('left', (event.pageX + 10) + 'px')
                     .style('top', (event.pageY - 10) + 'px');
@@ -213,9 +214,11 @@ const MyGraph = ({ updateTrigger }) => {
             .enter().append('text')
             .text(d => d.id)
             .attr('font-size', 10)
-            .attr('dx', 12)
-            .attr('dy', 4)
-            .attr('fill', '#333');
+            .attr('dx', 0)
+            .attr('dy', 0)
+            .attr('fill', '#333')
+            .attr('text-anchor', 'middle')
+            .attr('dominant-baseline', 'middle');
 
         const zoom = d3.zoom()
             .scaleExtent([0.1, 10])
