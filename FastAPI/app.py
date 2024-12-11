@@ -8,6 +8,7 @@ import pytz
 from database import Database
 
 from nlp_processor import NLPProcessor
+from relation_processor import RelationProcessor
 from src.give import get_word_definition
 # from src.relation_extractor import cleanup
 # from recommend import ArticleRecommender
@@ -28,6 +29,10 @@ app.add_middleware(
 )
 
 nlp_processor = NLPProcessor()
+relation_processor = RelationProcessor(
+    model_path='results/models/hgnn_model.pth',
+    pmi_path='data/pairwise_pmi_values3.json'
+)
 # recommender = ArticleRecommender()
 
 @app.post("/service")
@@ -57,10 +62,16 @@ async def main(input: InputText):
     print("received_text:\n", content)
 
     try:
-        result = nlp_processor.process_text(content)
-        print("\nresult:", result)
+        # NLP 처리 및 그래프 생성
+        graph_data = nlp_processor.process_text(content)
+        print("\nresult:", graph_data)
 
-        cur_unique_keywords = [node["id"] for node in result["nodes"]]
+        # 관계 분류 처리
+        enhanced_graph = relation_processor.classify_relations(graph_data)
+        print("\nenhanced result:", enhanced_graph)
+
+        # 키워드 정의 처리
+        cur_unique_keywords = [node["id"] for node in enhanced_graph["nodes"]]
         cur_unique_keywords = list(set(cur_unique_keywords))
 
         # cur_unique_keywords의 정의를 제공해야 함.
@@ -77,7 +88,7 @@ async def main(input: InputText):
         # print("\nrecommendations:", recommendations)
 
         return JSONResponse({
-            "hypergraph_data": result,
+            "hypergraph_data": enhanced_graph,
             # "recommendations": recommendations,
             "response_time": datetime.datetime.now(local_tz).isoformat(),
             "title": title,

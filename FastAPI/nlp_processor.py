@@ -86,6 +86,9 @@ class NLPProcessor:
                     base_form = None
                     endings = []
                     for morpheme in word.morphemes:
+                        if len(morpheme.surface) <= 1:
+                            continue
+
                         if morpheme.tag in {"VV", "VX"}:
                             base_form = morpheme.surface
                         elif morpheme.tag.startswith("EP") or morpheme.tag.startswith("EC") or morpheme.tag.startswith(
@@ -104,8 +107,12 @@ class NLPProcessor:
         feature_names = self.tfidf_vectorizer.get_feature_names_out()
         tfidf_scores = dict(zip(feature_names, tfidf_matrix.toarray()[0]))
 
+        word_count = len(text.split())
+        top_n = min(10, max(5, word_count // 100))
+        max_pairs_per_verb = min(5, max(3, word_count // 200))
+
         # 2. KeyBERT 키워드 미리 추출
-        keybert_results = dict(self.keybert_model.extract_keywords(text, top_n=50))
+        keybert_results = dict(self.keybert_model.extract_keywords(text, top_n))
 
         # 3. DeBERTa text embedding 미리 계산
         text_encoding = self.tokenizer(
