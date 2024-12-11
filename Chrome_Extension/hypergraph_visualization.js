@@ -18,7 +18,7 @@ function visualizeHypergraph (data) {
 
     // Force Simulation 설정
     const simulation = d3.forceSimulation(data.nodes)
-        .force("charge", d3.forceCollide().radius(50))  // 노드 간 충돌 방지
+        .force("charge", d3.forceCollide().radius(50))
         .force("link", d3.forceLink(data.edges.flatMap(edge => 
             edge.nodes.length === 2 ? [{
                 source: data.nodes.find(n => n.id === edge.nodes[0]),
@@ -27,13 +27,43 @@ function visualizeHypergraph (data) {
                 source: data.nodes.find(n => n.id === nodeId),
                 target: data.nodes.find(n => n.id === edge.nodes[(index + 1) % edge.nodes.length])
             }))
-        )).distance(100))  // 노드 간 거리 설정
-        .force("center", d3.forceCenter(width / 2, height / 2))  // 중앙 배치
-        .force("radial", d3.forceRadial(MAX_DISTANCE, width / 2, height / 2));  // 원형 배치
+        )).distance(10))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("radial", d3.forceRadial(MAX_DISTANCE, width / 2, height / 2))
+        .force("boundary", () => {
+            data.nodes.forEach(node => {
+                if (node !== centralNode) {
+                    node.x = Math.max(50, Math.min(width - 50, node.x));
+                    node.y = Math.max(50, Math.min(height - 50, node.y));
+                }
+            });
+        });
 
     // 중앙 노드 위치 고정
     centralNode.fx = width / 2;
     centralNode.fy = height / 2;
+
+    // 하이퍼엣지 연결선 (하이퍼엣지로 이루어진 노드들의 중앙으로 연결)
+    let edgeLines = svg.append("g")
+    .attr("class", "edges")
+    .selectAll("line")
+    .data(data.edges.flatMap(d => {
+        if (d.nodes.length === 2) {
+            return [{ edge: d, nodeId1: d.nodes[0], nodeId2: d.nodes[1] }];
+        } else {
+            return d.nodes.map(nodeId => ({ edge: d, nodeId: nodeId }));
+        }
+    }))
+    .enter()
+    .append("line")
+    .attr("stroke", "gray")          // 모든 엣지 회색으로 통일
+    .attr("stroke-width", 1)         // 모든 엣지 너비 1로 통일
+    .on("click", function(event, d) {
+        const edgeId = d.edge.id;
+        const url = `edge_info.html?edgeId=${edgeId}`;
+        window.open(url, '_blank');
+        createEdgeInfoTooltip(event, d);
+    });
 
     // 노드 그룹 컨테이너 생성
     let nodeGroup = svg.append("g")
@@ -42,35 +72,21 @@ function visualizeHypergraph (data) {
         .data(data.nodes)
         .enter().append("g");
 
-    // 하이퍼엣지 연결선 (하이퍼엣지로 이루어진 노드들의 중앙으로 연결)
-    let edgeLines = svg.append("g")
-    .attr("class", "edges")
-    .selectAll("line")
-    .data(data.edges.flatMap(d => {
-        if (d.nodes.length === 2) {
-            // 노드 2개만 연결된 엣지는 직선으로 이어지도록 설정
-            return [{ edge: d, nodeId1: d.nodes[0], nodeId2: d.nodes[1] }];
-        } else {
-            return d.nodes.map(nodeId => ({ edge: d, nodeId: nodeId }));
-        }
-    }))
-    .enter()
-    .append("line")
-    .attr("stroke", (d, i) => color(d.edge.id))
-    .attr("stroke-width", d => (d.edge.importance || 1) * 3)
-    .on("click", function(event, d) {
-        // 새 창 열기
-        const edgeId = d.edge.id;
-        const url = `edge_info.html?edgeId=${edgeId}`;
-        window.open(url, '_blank');
-        
-        // 툴팁 생성
-        createEdgeInfoTooltip(event, d);
-    });
-
     // 하이퍼엣지 경계박스 생성 함수
     function createHyperedgeBoundingBox(edge) {
         // 해당 엣지의 노드들 찾기
+        const nodeCircles = nodeGroup.append("circle")
+            .attr("r", d => {
+                // 중앙 노드인 경우 더 큰 크기 적용
+                if (d === centralNode) {
+                    return Math.max((d.importance || 1) * 30, 20);  // 중앙 노드는 30배, 최소 20
+                }
+                // 일반 노드
+                return Math.max((d.importance || 1) * 15, 10);  // 일반 노드는 15배, 최소 10
+            })
+            .attr("fill", "#32CD32")
+            .attr("class", "node-circle");
+
         const edgeNodes = edge.nodes.map(nodeId => 
             data.nodes.find(node => node.id === nodeId)
         );
@@ -96,7 +112,7 @@ function visualizeHypergraph (data) {
             .attr("height", maxY - minY + 2 * padding)
             .attr("fill", "none")
             .attr("stroke", color(edge.id))
-            .attr("stroke-width", 3)
+            .attr("stroke-width", 1)
             .attr("stroke-dasharray", "10,5");
 
         return boundingBox;
@@ -104,36 +120,53 @@ function visualizeHypergraph (data) {
 
     // 노드 (원)
     const nodeCircles = nodeGroup.append("circle")
-        .attr("r", d => Math.max((d.importance || 1) * 15, 10))
-        .attr("fill", "gray")
+        .attr("r", d => d === centralNode 
+            ? Math.max((d.importance || 1) * 30, 25)  // 중앙 노드는 항상 큼
+            : Math.max((d.importance || 1) * 15, 10)  // 일반 노드는 더 작음
+        )
+        .attr("fill", "#32CD32")
         .attr("class", "node-circle");
 
-    // 노드 레이블 (제목)
-    nodeGroup.append("text")
+    // 노드 레이블 (제목) - 텍스트 크기를 노드 크기에 비례하게 설정
+    const nodeLabels = nodeGroup.append("text")
         .text(d => d.id)
         .attr("fill", "black")
-        .attr("dy", -20)
-        .style("pointer-events", "none");
+        .attr("dy", d => d === centralNode ? 5 : -20) 
+        .attr("text-anchor", "middle")
+        .style("pointer-events", "none")
+        .style("font-size", d => d === centralNode ? "14px" : "12px")
+        // .attr("fill", d => d === centralNode ? "#FFFFFF" : "#000000")
+        .attr("font-weight", d => d === centralNode ? "bold" : "normal")
+        .style("font-family", "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif");
 
-    // 엣지 필터링 함수
-    function updateVisualizationForEdge(visibleEdgeId) {
-        if (visibleEdgeId === null) {
-            // 모든 노드와 엣지를 표시
+    function updateVisualizationForEdge(clickedEdgeId) {
+        // 이미 선택된 엣지를 다시 클릭한 경우 선택 해제
+        if (selectedEdgeId === clickedEdgeId) {
+            selectedEdgeId = null;
+            // 모든 노드와 엣지를 원래 상태로 복원
             nodeGroup.style("opacity", 1);
             edgeLines.style("opacity", 1);
-        } else {
-            // 특정 엣지와 연결된 노드만 표시
-            const filteredEdges = data.edges.filter(edge => edge.id === visibleEdgeId);
-            const visibleNodeIds = new Set(filteredEdges.flatMap(edge => edge.nodes));
-
-            // 노드 필터링
-            nodeGroup.style("opacity", d => visibleNodeIds.has(d.id) ? 1 : 0.2);
-
-            // 엣지 필터링
-            edgeLines.style("opacity", edge => 
-                filteredEdges.some(filteredEdge => filteredEdge.id === edge.edge.id) ? 1 : 0.2
-            );
+            // 경계 박스 제거
+            svg.selectAll(".hyperedge-bounding-box").remove();
+            // 설명 패널 제거
+            svg.selectAll(".edge-description-panel").remove();
+            return;
         }
+
+        // 새로운 엣지 선택
+        selectedEdgeId = clickedEdgeId;
+        
+        // 특정 엣지와 연결된 노드만 표시
+        const filteredEdges = data.edges.filter(edge => edge.id === selectedEdgeId);
+        const visibleNodeIds = new Set(filteredEdges.flatMap(edge => edge.nodes));
+
+        // 노드 필터링
+        nodeGroup.style("opacity", d => visibleNodeIds.has(d.id) ? 1 : 0.2);
+
+        // 엣지 필터링
+        edgeLines.style("opacity", edge => 
+            filteredEdges.some(filteredEdge => filteredEdge.id === edge.edge.id) ? 1 : 0.2
+        );
     }
 
     // 범례 생성
@@ -152,40 +185,43 @@ function visualizeHypergraph (data) {
             .attr("class", "legend-item")
             .style("cursor", "pointer")
             .on("click", () => {
-                // 기존 경계 박스 제거
+                // 기존 경계 박스와 설명 패널 제거
                 svg.selectAll(".hyperedge-bounding-box").remove();
+                svg.selectAll(".edge-description-panel").remove();
 
-                // 엣지 필터링
+                // 엣지 필터링 업데이트
                 updateVisualizationForEdge(edgeId);
 
-                // 3개 이상의 노드를 가진 하이퍼엣지인 경우 경계 박스 생성
-                if (edge.nodes.length >= 3) {
+                // 선택된 상태이고 3개 이상의 노드를 가진 하이퍼엣지인 경우 경계 박스 생성
+                if (selectedEdgeId === edgeId && edge.nodes.length >= 3) {
                     createHyperedgeBoundingBox(edge);
                 }
 
-                // 설명 패널 생성
-                const descriptionPanel = svg.append("g")
-                    .attr("class", "edge-description-panel")
-                    .attr("transform", `translate(${width - 300}, ${height - 150})`);
-                
-                descriptionPanel.append("rect")
-                    .attr("width", 250)
-                    .attr("height", 100)
-                    .attr("fill", "white")
-                    .attr("stroke", color(edgeId));
-                
-                descriptionPanel.append("text")
-                    .attr("x", 10)
-                    .attr("y", 20)
-                    .attr("font-weight", "bold")
-                    .text(`Edge ${edgeId} Description`);
-                
-                descriptionPanel.append("text")
-                    .attr("x", 10)
-                    .attr("y", 40)
-                    .attr("width", 230)
-                    .attr("font-size", "0.8em")
-                    .text(data.edges.find(e => e.id === edgeId)?.description || 'No description available.')
+                // 선택된 상태인 경우에만 설명 패널 생성
+                if (selectedEdgeId === edgeId) {
+                    const descriptionPanel = svg.append("g")
+                        .attr("class", "edge-description-panel")
+                        .attr("transform", `translate(${width - 300}, ${height - 150})`);
+                    
+                    descriptionPanel.append("rect")
+                        .attr("width", 250)
+                        .attr("height", 50)
+                        .attr("fill", "white")
+                        .attr("stroke", color(edgeId));
+                    
+                    descriptionPanel.append("text")
+                        .attr("x", 10)
+                        .attr("y", 20)
+                        .attr("font-weight", "bold")
+                        .text(`${edgeId} Description`);
+                    
+                    descriptionPanel.append("text")
+                        .attr("x", 10)
+                        .attr("y", 40)
+                        .attr("width", 230)
+                        .attr("font-size", "0.8em")
+                        .text(edge.description || 'No description available.');
+                }
             });
 
         legendItem.append("circle")
@@ -197,7 +233,7 @@ function visualizeHypergraph (data) {
         legendItem.append("text")
             .attr("x", 40)
             .attr("y", 15)
-            .text(`Edge ${edgeId}`);
+            .text(`${edge.category}`);
     });
 
     // 전체 그래프 보기 클릭 원 추가
@@ -208,60 +244,111 @@ function visualizeHypergraph (data) {
         .on("click", () => {
             // 경계 박스 제거
             svg.selectAll(".hyperedge-bounding-box").remove();
-
-            // 전체 그래프를 다시 그림
-            updateVisualizationForEdge(null);
         });
 
-    resetLegendItem.append("circle")
-        .attr("r", 8)
-        .attr("fill", "grey")
-        .attr("cx", 10)
-        .attr("cy", 10);
+    // resetLegendItem.append("circle")
+    //     .attr("r", 8)
+    //     .attr("fill", "grey")
+    //     .attr("cx", 10)
+    //     .attr("cy", 10);
 
-    resetLegendItem.append("text")
-        .attr("x", 40)
-        .attr("y", 15)
-        .text("View All");
+    // resetLegendItem.append("text")
+    //     .attr("x", 40)
+    //     .attr("y", 15)
+    //     .text("View All");
 
     // 마우스 오버/아웃 이벤트
     nodeGroup
         .on("mouseover", function(event, d) {
             const connectedEdges = data.edges.filter(edge => edge.nodes.includes(d.id));
 
+            // 노드 크기 변경
             nodeGroup.selectAll(".node-circle")
                 .transition()
                 .duration(200)
                 .attr("r", node => {
-                    if (node.id === d.id) return Math.max((node.importance || 1) * 25, 20);
+                    if (node === centralNode) {
+                        // 중앙 노드는 hover된 경우에만 더 커짐
+                        return node === d ? Math.max((node.importance || 1) * 35, 30) : Math.max((node.importance || 1) * 30, 25);
+                    }
+                    // 호버된 일반 노드
+                    if (node.id === d.id) {
+                        return Math.max((node.importance || 1) * 20, 15);
+                    }
+                    // 나머지 일반 노드
                     return Math.max((node.importance || 1) * 15, 10);
-                })
-                .attr("fill", node => node.id === d.id ? "red" : "gray");
+                });
+
+            // 텍스트 크기 변경
+            nodeGroup.selectAll("text")
+                .transition()
+                .duration(200)
+                .style("font-size", node => {
+                    if (node === centralNode) {
+                        // 중앙 노드 텍스트는 hover된 경우에만 더 커짐
+                        return node === d ? "18px" : "16px";
+                    }
+                    // 호버된 일반 노드
+                    if (node.id === d.id) {
+                        return "14px";
+                    }
+                    // 나머지 일반 노드
+                    return "12px";
+                });
 
             edgeLines
                 .transition()
                 .duration(200)
                 .attr("stroke-width", edge => {
-                    if (connectedEdges.includes(edge.edge)) return (edge.edge.importance || 1) * 6;
-                    return (edge.edge.importance || 1) * 3;
+                    if (connectedEdges.includes(edge.edge)) return 2;  // 연결된 엣지만 살짝 굵게
+                    return 1;
                 })
-                .attr("stroke", edge => {
-                    if (connectedEdges.includes(edge.edge)) return "red";
-                    return color(edge.edge.id);
-                });
+                .attr("stroke", "gray");  // 색상은 항상 회색 유지
         })
         .on("mouseout", function() {
+            // 노드 크기 원복
             nodeGroup.selectAll(".node-circle")
                 .transition()
                 .duration(200)
-                .attr("r", d => Math.max((d.importance || 1) * 15, 10))
-                .attr("fill", "gray");
+                .attr("r", node => node === centralNode 
+                    ? Math.max((node.importance || 1) * 30, 25)  // 중앙 노드 기본 크기
+                    : Math.max((node.importance || 1) * 15, 10)  // 일반 노드 기본 크기
+                );
+
+            // 텍스트 크기 원복
+            nodeGroup.selectAll("text")
+                .transition()
+                .duration(200)
+                .style("font-size", node => node === centralNode ? "16px" : "12px");
 
             edgeLines
                 .transition()
                 .duration(200)
-                .attr("stroke-width", d => (d.edge.importance || 1) * 3)
-                .attr("stroke", d => color(d.edge.id));
+                .attr("stroke-width", 1)
+                .attr("stroke", "gray");
+        })
+
+        .on("mouseout", function() {
+            // 노드 크기 원복
+            nodeGroup.selectAll(".node-circle")
+                .transition()
+                .duration(200)
+                .attr("r", d => d === centralNode 
+                    ? Math.max((d.importance || 1) * 30, 25)  // 중앙 노드 크기 유지
+                    : Math.max((d.importance || 1) * 15, 10)  // 일반 노드 원래 크기로
+                );
+
+            // 텍스트 크기 원복
+            nodeGroup.selectAll("text")
+                .transition()
+                .duration(200)
+                .style("font-size", d => d === centralNode ? "16px" : "12px");
+
+            edgeLines
+                .transition()
+                .duration(200)
+                .attr("stroke-width", 1)
+                .attr("stroke", d => 'gray');
         });
 
     // 드래그 이벤트 설정
