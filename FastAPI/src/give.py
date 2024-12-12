@@ -51,13 +51,14 @@ def get_word_definition(words, dictionary_file_path):
     # 각 단어에 대해 정의 검색
     for word in words:
         # 사전에 없는 경우, 띄어쓰기를 제거하고 사전에서 검색
-        print(f"'{word}'에 대한 정의를 사전에서 검색 중...")
+        # print(f"'{word}'에 대한 정의를 사전에서 검색 중...")
         found_definition = search_definition(word, dictionary)
 
         if found_definition:
             print(f"{word}: 사전에서 정의를 찾았습니다.")
             definitions[word] = found_definition
         else:
-            print(f"'{word}': 정의를 찾을 수 없습니다")
+            pass
+            # print(f"'{word}': 정의를 찾을 수 없습니다")
 
     return definitions

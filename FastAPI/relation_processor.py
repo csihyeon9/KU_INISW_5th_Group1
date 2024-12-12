@@ -9,7 +9,6 @@ from src.matrix_processor4 import (
 import json
 import numpy as np
 from scipy.sparse import csr_matrix
-from collections import defaultdict
 
 
 class RelationProcessor:

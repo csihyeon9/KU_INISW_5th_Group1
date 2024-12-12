@@ -6,6 +6,7 @@ from pydantic import BaseModel
 import datetime
 import pytz
 from database import Database
+from graph_connector import GraphConnector
 
 from nlp_processor import NLPProcessor
 from relation_processor import RelationProcessor
@@ -13,6 +14,7 @@ from src.give import get_word_definition
 # from src.relation_extractor import cleanup
 # from recommend import ArticleRecommender
 from src.fetch_content import fetch_content
+from src.pkm_processor import PKMProcessor
 
 app = FastAPI()
 
@@ -62,13 +64,18 @@ async def main(input: InputText):
     print("received_text:\n", content)
 
     try:
-        # NLP 처리 및 그래프 생성
+        # 1. NLP 처리 및 그래프 생성
         graph_data = nlp_processor.process_text(content)
         print("\nresult:", graph_data)
 
-        # 관계 분류 처리
+        # 2. 관계 분류
         enhanced_graph = relation_processor.classify_relations(graph_data)
         print("\nenhanced result:", enhanced_graph)
+
+        # 3. 고립 그래프 연결
+        connector = GraphConnector(enhanced_graph, content)  # content 전달
+        final_graph = connector.connect_isolated_graphs(relation_processor)
+        print("\nfinal result:", final_graph)
 
         # 키워드 정의 처리
         cur_unique_keywords = [node["id"] for node in enhanced_graph["nodes"]]
@@ -88,7 +95,8 @@ async def main(input: InputText):
         # print("\nrecommendations:", recommendations)
 
         return JSONResponse({
-            "hypergraph_data": enhanced_graph,
+            "hypergraph_data": final_graph,
+            # "hypergraph_data": enhanced_graph,
             # "recommendations": recommendations,
             "response_time": datetime.datetime.now(local_tz).isoformat(),
             "title": title,
@@ -117,8 +125,28 @@ async def save_article(article_data: dict):
 
 @app.get("/articles")
 async def get_articles():
-    articles = await Database.get_all_articles()
-    return articles
+    try:
+        # 1. 기존 문서들 가져오기
+        articles = await Database.get_all_articles()
+        if not articles:
+            return []
+
+        # return articles
+
+        # 2. PKM 프로세서로 문서 간 연결 처리
+        try:
+            pkm_processor = PKMProcessor(relation_processor)
+            integrated_articles = pkm_processor.process_articles(articles)
+            print("\nintegrated_articles:", integrated_articles)
+            return integrated_articles
+        except Exception as e:
+            print(f"Error processing articles: {str(e)}")
+            # 오류 발생시 원본 articles 반환
+            return articles
+
+    except Exception as e:
+        print(f"Error in get_articles: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.delete("/articles/{article_id}")
 async def delete_article(article_id: str):
